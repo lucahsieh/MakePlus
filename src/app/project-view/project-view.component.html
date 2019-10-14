@@ -1,1 +1,27 @@
-<p>project-view works!</p>
+<mat-card>
+    <h1>{{project.Name}}</h1>
+    <p>{{project.desc}}</p>
+    <mat-divider></mat-divider>
+    <h4></h4>
+
+    <table style="width:100%;text-align:left;">
+        <tr>
+            <th>Start Date: {{project.startDate | date:"MM/dd/yy"}}</th>
+            <th>Completed: {{project.completion}}%</th>
+            <th>Team Lead: <span *ngFor="let emp of project.lead">{{emp.name}}, </span></th>
+        </tr>
+        <tr>
+            <th>End Date: {{project.endDate | date:"MM/dd/yy"}}</th>
+            <th>Records Stored Completed: {{project.recoredStoredCompleted}}%</th>
+            <th>Team Members: <span *ngFor="let emp of project.member">{{emp.name}}, </span></th>
+        </tr>
+        <tr>
+
+        </tr>
+
+    </table>
+
+
+   
+
+</mat-card>

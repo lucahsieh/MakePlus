@@ -187,8 +187,11 @@ export class ProjectService {
     private createDummyProject(id: number) {
         var p = new Project();
         p.ID = id;
-        p.Name = "projectNameGoesHere";
-        p.desc = "projectDescriptionGoesHere, lots of text.";
+        p.Name = "ISSP";
+        p.desc = `Web Application for project management. The clients will be able to
+        view/edit ongoing and past projects in both high level and low level details
+        such as but not limited to final budget of the project, completion timeline,
+        and individual project members’ invested hours respectively.`;
         p.salaryBudget = Math.floor(Math.random() * 10000) + 1;
         p.totalInvoice = Math.floor(Math.random() * 10000) + 1;
         p.materialBudget = Math.floor(Math.random() * 10000) + 1;
