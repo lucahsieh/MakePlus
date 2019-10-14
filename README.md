@@ -1,6 +1,8 @@
 # MakePlus
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
+This is the front-end part without database.
+Note: suggust to open this project in VS code.
 
 ## Development server
 
