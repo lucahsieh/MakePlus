@@ -28,19 +28,20 @@ export class ProjectService {
         private http: HttpClient,
         private messageService: MessageService) { }
 
-    //   getProject(id: number): Observable<Project> {
-    //       const url = `${this.projectUrl}/${id}`;
-    //       return this.http.get<Project>(url).pipe(
-    //           tap(_ => this.log(`fetched project id=${id}`)),
-    //           catchError(this.handleError<Project>(`getProject id=${id}`))
-    //       );
-    //   };
+      getProject(id: number): Observable<Project> {
+        //   const url = `${this.projectUrl}/${id}`;
+        //   return this.http.get<Project>(url).pipe(
+        //       tap(_ => this.log(`fetched project id=${id}`)),
+        //       catchError(this.handleError<Project>(`getProject id=${id}`))
+        //   );
+        return of(this.createDummyProject(id));
+      };
 
 
 
-    getProject(id: number) {
-        return this.createDummyProject(id);
-    }
+    // getProject(id: number) {
+    //     return this.createDummyProject(id);
+    // }
 
 
 
@@ -187,7 +188,7 @@ export class ProjectService {
     private createDummyProject(id: number) {
         var p = new Project();
         p.ID = id;
-        p.Name = "ISSP";
+        p.Name = "ISSP Project";
         p.desc = `Web Application for project management. The clients will be able to
         view/edit ongoing and past projects in both high level and low level details
         such as but not limited to final budget of the project, completion timeline,
@@ -195,6 +196,7 @@ export class ProjectService {
         p.salaryBudget = Math.floor(Math.random() * 10000) + 1;
         p.totalInvoice = Math.floor(Math.random() * 10000) + 1;
         p.materialBudget = Math.floor(Math.random() * 10000) + 1;
+        p.spendToDate = Math.floor(Math.random() * 10000) + 1;
         p.startDate = new Date(2019, 11, 26);
         p.endDate = new Date(2019, 11, 26);
         p.completion = Math.floor(Math.random() * 100) + 1;

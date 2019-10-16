@@ -13,6 +13,7 @@ export class Project{
     salaryBudget:number;
     totalInvoice:number;
     materialBudget:number;
+    spendToDate:number;
     startDate:Date;
     endDate:Date;
     completion:number;

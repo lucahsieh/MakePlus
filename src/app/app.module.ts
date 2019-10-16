@@ -15,22 +15,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
-
 import {MatTableModule} from '@angular/material/table';
 
-
+import {CalendarModule} from 'primeng/calendar';
 
 
 import { ProjectViewComponent } from './project-view/project-view.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { WorkloadViewComponent } from './workload-view/workload-view.component';
+import { HighlevelViewComponent } from './highlevel-view/highlevel-view.component';
+import { CalendarComponent } from './project-view/project-view/calendar/calendar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SlidenavComponent,
-    ProjectViewComponent
+    ProjectViewComponent,
+    WorkloadViewComponent,
+    HighlevelViewComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     HttpClientModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    CalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
