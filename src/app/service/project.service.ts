@@ -219,7 +219,11 @@ export class ProjectService {
             new PhaseItem(1, "consulting", new Date(2019, 10, 16), new Date(2019, 10, 30)),
             new PhaseItem(2, "Requirements", new Date(2019, 10, 31), new Date(2019, 11, 5)),
             new PhaseItem(3, "Concept", new Date(2019, 11, 6), new Date(2019, 11, 21)),
-            new PhaseItem(4, "Detailed Design", new Date(2019, 11, 22), new Date(2019, 12, 10))
+            new PhaseItem(4, "Detailed Design", new Date(2019, 11, 22), new Date(2019, 12, 10)),
+            new PhaseItem(5, "Fabrication", new Date(2019, 12, 10), new Date(2019, 12, 20)),
+            new PhaseItem(6, "Evaluation/ user study", new Date(2019, 12, 21), new Date(2019, 12, 31)),
+            new PhaseItem(7, "Reporting", new Date(2020, 1, 1), new Date(2020, 1, 10)),
+            new PhaseItem(8, "Validation", new Date(2020, 1, 11), new Date(2020, 1, 15)),
         ];
 
         p.workloadArr = [
