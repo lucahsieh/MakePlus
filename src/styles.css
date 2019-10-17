@@ -9,4 +9,6 @@ body .ui-datepicker table td > a, body .ui-datepicker table td > span  {
   }
   body .ui-datepicker table td {
     padding: 0em;
+} body .ui-datepicker {
+    border: 0px solid #a6a6a6;
 }
