@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
+import { FormsModule }    from '@angular/forms';
 
 import {CalendarModule} from 'primeng/calendar';
 
@@ -25,7 +26,8 @@ import { ProjectViewComponent } from './project-view/project-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WorkloadViewComponent } from './workload-view/workload-view.component';
 import { HighlevelViewComponent } from './highlevel-view/highlevel-view.component';
-import { CalendarComponent } from './project-view/project-view/calendar/calendar.component';
+import { CalendarComponent } from './project-view/componentes/calendar/calendar.component';
+import { InvoiceComponent } from './project-view/componentes/invoice/invoice.component';
 
 
 @NgModule({
@@ -35,10 +37,12 @@ import { CalendarComponent } from './project-view/project-view/calendar/calendar
     ProjectViewComponent,
     WorkloadViewComponent,
     HighlevelViewComponent,
-    CalendarComponent
+    CalendarComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,

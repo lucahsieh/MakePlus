@@ -247,9 +247,9 @@ export class ProjectService {
             new SalaryItem(4, 3, "Perry", 55),
         ];
         p.invoiceArr = [
-            new InvoiceItem(Math.floor(Math.random() * 1000) + 1, new Date(2019, 11, 2)),
-            new InvoiceItem(Math.floor(Math.random() * 1000) + 1, new Date(2019, 11, 12)),
-            new InvoiceItem(Math.floor(Math.random() * 1000) + 1, new Date(2019, 11, 22)),
+            new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 2)),
+            new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 12)),
+            new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 22)),
         ];
 
         p.material = [

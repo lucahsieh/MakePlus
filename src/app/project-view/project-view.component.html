@@ -1,34 +1,33 @@
-<mat-card>
-    <h1>{{project.ID}}{{project.Name}} </h1>
-    <span class="mat-header-cell">{{project.desc}}</span>
-    <h1></h1>
-    <mat-divider></mat-divider>
+<h1>{{project.ID}}{{project.Name}} </h1>
+<p>{{project.desc}}</p>
 
+<button mat-stroked-button>Modify</button>
+<mat-card>
     <table class="mat-table">
 
-            <tr class="mat-header-row">
-                <th class="mat-header-cell">Start Date</th>
-                <th class="mat-header-cell">End Date</th>
-                <th class="mat-header-cell">Completed</th>
-                <th class="mat-header-cell">Records Stored Completed</th>
-                <th class="mat-header-cell">Team Lead</th>
-                <th class="mat-header-cell">Team Members</th>
-       
-            </tr>
-    
-            <tr class="mat-row">
-                <td class="mat-cell">{{project.startDate | date:"yyyy/MM/dd"}}</td>
-                <td class="mat-cell">{{project.endDate | date:"yyyy/MM/dd"}}</td>
-                <td class="mat-cell">{{project.completion}} %</td>
-                <td class="mat-cell">{{project.recoredStoredCompleted}} %</td>
-                <td class="mat-cell">
-                    <span *ngFor="let emp of project.lead">{{emp.name}}, </span>
-                </td>
-                <td class="mat-cell">
-                    <span *ngFor="let emp of project.member">{{emp.name}}, </span>
-                </td>
-            </tr>
-        </table>
+        <tr class="mat-header-row">
+            <th class="mat-header-cell">Start Date</th>
+            <th class="mat-header-cell">End Date</th>
+            <th class="mat-header-cell">Completed</th>
+            <th class="mat-header-cell">Records Stored Completed</th>
+            <th class="mat-header-cell">Team Lead</th>
+            <th class="mat-header-cell">Team Members</th>
+
+        </tr>
+
+        <tr class="mat-row">
+            <td class="mat-cell">{{project.startDate | date:"yyyy/MM/dd"}}</td>
+            <td class="mat-cell">{{project.endDate | date:"yyyy/MM/dd"}}</td>
+            <td class="mat-cell">{{project.completion}} %</td>
+            <td class="mat-cell">{{project.recoredStoredCompleted}} %</td>
+            <td class="mat-cell">
+                <span *ngFor="let emp of project.lead">{{emp.name}}, </span>
+            </td>
+            <td class="mat-cell">
+                <span *ngFor="let emp of project.member">{{emp.name}}, </span>
+            </td>
+        </tr>
+    </table>
 
 
     <table class="mat-table">
@@ -38,7 +37,7 @@
             <th class="mat-header-cell">Total Invoiced</th>
             <th class="mat-header-cell">Material Budget</th>
             <th class="mat-header-cell">Spent to Date</th>
-            
+
         </tr>
 
         <tr class="mat-row">
@@ -51,20 +50,30 @@
 
     <table class="mat-table">
 
-            <tr class="mat-header-row">
-                <th class="mat-header-cell">Inprogress Survey Sent</th>
-                <th class="mat-header-cell">Inprogress Survey Results</th>
-                <th class="mat-header-cell">Follow up Survey Sent</th>
-                <th class="mat-header-cell">Follow up Survey Results</th>
-            </tr>
-    
-            <tr class="mat-row">
-                <td class="mat-cell">{{project.progressSurveySent}}</td>
-                <td class="mat-cell">{{project.progressSurveyRsult}}</td>
-                <td class="mat-cell">{{project.followupSurveySent}}</td>
-                <td class="mat-cell">{{project.followupSurveyResult}}</td>
-            </tr>
-        </table>
+        <tr class="mat-header-row">
+            <th class="mat-header-cell">Inprogress Survey Sent</th>
+            <th class="mat-header-cell">Inprogress Survey Results</th>
+            <th class="mat-header-cell">Follow up Survey Sent</th>
+            <th class="mat-header-cell">Follow up Survey Results</th>
+        </tr>
+
+        <tr class="mat-row">
+            <td class="mat-cell">{{project.progressSurveySent}}</td>
+            <td class="mat-cell">{{project.progressSurveyRsult}}</td>
+            <td class="mat-cell">{{project.followupSurveySent}}</td>
+            <td class="mat-cell">{{project.followupSurveyResult}}</td>
+        </tr>
+    </table>
 </mat-card>
+
+
+<app-invoice [invoices]="project.invoiceArr"></app-invoice>
+<label>project Name:
+    <input [(ngModel)]="project.Name" placeholder="name"/>
+  </label>
+<label>amount:
+    <input [(ngModel)]="project.invoiceArr[0].amount" placeholder="name"/>
+  </label>
+
 
 <app-calendar [phases]="project.phaseArr"></app-calendar>
