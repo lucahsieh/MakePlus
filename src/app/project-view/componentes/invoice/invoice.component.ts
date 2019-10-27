@@ -9,19 +9,6 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
 
 @Component({
   selector: 'app-invoice',
@@ -30,16 +17,65 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class InvoiceComponent implements OnInit {
 
-  @Input() invoices:InvoiceItem[];
+  @Input() invoices: InvoiceItem[];
 
   displayedColumns: string[] = ['date', 'amount'];
-  dataSource = ELEMENT_DATA;
-
+  cols: any[];
+  invo: InvoiceItem;
+  newInvo: boolean;
+  selectedInvo: InvoiceItem;
+  displayDialog: boolean;
+  today:Date;
 
   constructor() { }
 
   ngOnInit() {
+    this.cols = [
+      { field: 'date', header: 'date' },
+      { field: 'amount', header: 'amount' }
+    ];
+    this.today = new Date(Date.now());
+  }
 
+  calculateTotal() {
+    var total = 0;
+    for (var i = 0; i < this.invoices.length; i++) {
+      total += this.invoices[i].amount;
+    }
+    return total;
+  }
+
+  save() {
+    if (this.newInvo)
+      this.invoices.push(this.invo);
+    else
+      this.invoices[this.invoices.indexOf(this.selectedInvo)] = this.invo;
+
+    this.invo = null;
+    this.displayDialog = false;
+  }
+  delete() {
+    let index = this.invoices.indexOf(this.selectedInvo);
+    this.invoices = this.invoices.filter((val, i) => i != index);
+    this.invo = null;
+    this.displayDialog = false;
+  }
+  onRowSelect(event) {
+    this.newInvo = false;
+    this.invo = this.cloneCar(event.data);
+    this.displayDialog = true;
+  }
+  cloneCar(c: InvoiceItem): any {
+    let car = {};
+    for (let prop in c) {
+      car[prop] = c[prop];
+    }
+    return car;
+  }
+  showDialogToAdd() {
+    this.newInvo = true;
+    this.invo = new InvoiceItem( 1, new Date());
+    this.displayDialog = true;
   }
 
 }

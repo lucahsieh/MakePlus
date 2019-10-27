@@ -9,5 +9,4 @@ export class InvoiceItem {
         this.date = date;
     };
 
-
 }

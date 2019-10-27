@@ -7,3 +7,28 @@ mat-card {
     box-shadow: inherit;
     border: 0px;
 }
+
+p-table {
+    width: fit-content;
+}
+
+.tableRowStyle {
+    background-color: inherit !important;
+}
+
+.tableCellStyle {
+    border-width: 0px !important;
+    text-align: center;
+}
+
+.tableHeaderRowStyle {
+    background-color: inherit !important;
+}
+
+.tableHeaderCellStyle {
+    border-width: 0px !important;
+}
+
+.inputStyle {
+    text-align: center !important;
+}

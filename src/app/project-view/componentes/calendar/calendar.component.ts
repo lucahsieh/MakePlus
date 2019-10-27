@@ -39,7 +39,6 @@ export class CalendarComponent implements OnInit {
     // })
     for(let i = 0; i< this.phases.length;i++){
       if (current.getTime() >= this.phases[i].startDate.getTime() && current.getTime() <= this.phases[i].endDate.getTime()){
-        console.log(date,month,year,i);
         return i;
       }
     }

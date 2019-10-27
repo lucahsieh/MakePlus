@@ -189,16 +189,13 @@ export class ProjectService {
         var p = new Project();
         p.ID = id;
         p.Name = "ISSP Project";
-        p.desc = `Web Application for project management. The clients will be able to
-        view/edit ongoing and past projects in both high level and low level details
-        such as but not limited to final budget of the project, completion timeline,
-        and individual project members’ invested hours respectively.`;
+        p.desc = `Web Application for project management. The clients will be able to view/edit ongoing and past projects in both high level and low level details such as but not limited to final budget of the project, completion timeline, and individual project members’ invested hours respectively.`;
         p.salaryBudget = Math.floor(Math.random() * 10000) + 1;
         p.totalInvoice = Math.floor(Math.random() * 10000) + 1;
         p.materialBudget = Math.floor(Math.random() * 10000) + 1;
         p.spendToDate = Math.floor(Math.random() * 10000) + 1;
         p.startDate = new Date(2019, 11, 26);
-        p.endDate = new Date(2019, 11, 26);
+        p.endDate = new Date(2019, 11, 31);
         p.completion = Math.floor(Math.random() * 100) + 1;
 
         p.recoredStoredCompleted = Math.floor(Math.random() * 100) + 1;

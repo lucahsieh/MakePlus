@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Project } from '../classes/project';
 import { ProjectService } from '../service/project.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 
 export interface PeriodicElement {
@@ -32,6 +33,7 @@ export class ProjectViewComponent implements OnInit {
   // @Input() 
   project: Project;
   
+
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
@@ -39,6 +41,8 @@ export class ProjectViewComponent implements OnInit {
 
   ngOnInit() {
     this.getProject();
+    
+    console.log(JSON.stringify(this.project));
   }
 
   getProject(): void {
@@ -46,6 +50,7 @@ export class ProjectViewComponent implements OnInit {
     // this.project = this.projectService.getProject(id);
     this.projectService.getProject(id)
       .subscribe(project => this.project = project);
+    
   }
 
 
