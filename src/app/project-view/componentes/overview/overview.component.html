@@ -86,13 +86,13 @@
                 <table style="text-align: left; ">
 
                     <tr class="mat-header-row">
-
+                        <!-- isUnderISO13485 -->
                         <th>
+                            <mat-checkbox class="example-margin" [checked]="project.isUnderISO13485" [disabled]="readMode" class=" readOnly-Text">Under ISO13485</mat-checkbox>
                         </th>
                         <!-- isProposal -->
                         <th>
                             <mat-checkbox class="example-margin" [checked]="project.isProposal" [disabled]="readMode" class=" readOnly-Text">This is proposal</mat-checkbox>
-
                         </th>
 
 

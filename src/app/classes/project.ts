@@ -21,6 +21,7 @@ export class Project{
     businessCode:string;
     isProposal:boolean;
     costMultiplier:number;
+    isUnderISO13485:boolean;
 
     //quality system
     progressSurveySent:boolean;

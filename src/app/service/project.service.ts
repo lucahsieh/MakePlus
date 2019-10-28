@@ -200,6 +200,7 @@ export class ProjectService {
         p.businessCode="NA";
         p.costMultiplier=1.75;
         p.isProposal=false;
+        p.isUnderISO13485=false;
 
         p.recoredStoredCompleted = Math.floor(Math.random() * 100) + 1;
         p.progressSurveyRsult = true;
