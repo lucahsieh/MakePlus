@@ -1,5 +1,5 @@
 <mat-card>
-    <p-table [style]="{'width':'400px'}" [columns]="cols" [value]="invoices" selectionMode="single" [(selection)]="selectedInvo" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+    <p-table [style]="{'width':'280px'}" [columns]="cols" [value]="invoices" selectionMode="single" [(selection)]="selectedInvo" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
         <ng-template pTemplate="caption">
             Invoice
         </ng-template>
@@ -12,7 +12,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr [pSelectableRow]="rowData">
-                <td *ngFor="let col of columns">
+                <td *ngFor="let col of columns" style="text-align: center;">
                     <span *ngIf="col.header=='date'">{{rowData[col.field] | date:"yyyy/MM/dd"}}</span>
                     <span *ngIf="col.header!='date'">${{rowData[col.field] }}</span>
                 </td>
@@ -20,89 +20,19 @@
         </ng-template>
         <ng-template pTemplate="footer">
             <tr>
-                <td>Totals</td>
-                <td>${{calculateTotal()}}</td>
+                <td style="text-align: right;">Totals</td>
+                <td style="text-align: right;">${{calculateTotal()}}</td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="summary" let-rowData>
+        <!-- <ng-template pTemplate="summary" let-rowData *ngIf="readMode">
             <div style="text-align:left;">
                 <button mat-raised-button color="primary" (click)="showDialogToAdd()">Add</button>
-                <!-- <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button> -->
+                <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
             </div>
-        </ng-template>
+        </ng-template> -->
     </p-table>
+    <button mat-raised-button color="primary" (click)="showDialogToAdd()" style="margin: 10px; margin-left: 77%;">Add</button>
 
-    <p-table [value]="invoices" [style]="{'width':'400px'}" (onRowSelect)="onRowSelect($event)" selectionMode="single" [(selection)]="selectedInvo">
-        <ng-template pTemplate="header">
-            <tr [ngClass]="'tableHeaderRowStyle'">
-                <th [ngClass]="'tableHeaderCellStyle'">date</th>
-                <th [ngClass]="'tableHeaderCellStyle'">amount</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-invo [pSelectableRow]="invo">
-            <tr [ngClass]="'tableRowStyle'">
-                <td [ngClass]="'tableCellStyle'">{{invo.date | date:"yyyy/MM/dd"}}</td>
-                <td [ngClass]="'tableCellStyle'">${{invo.amount}}</td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="footer">
-            <tr [ngClass]="'tableRowStyle'">
-                <td [ngClass]="'tableCellStyle'">Totals</td>
-                <td [ngClass]="'tableCellStyle'">${{calculateTotal()}}</td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="summary" let-invo>
-            <div style="text-align:left">
-                <button mat-raised-button color="primary" (click)="showDialogToAdd()">Add</button>
-                <!-- <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button> -->
-            </div>
-        </ng-template>
-    </p-table>
-
-    <p-table [value]="invoices" [style]="{'width':'400px'}">
-        <ng-template pTemplate="header">
-            <tr [ngClass]="'tableHeaderRowStyle'">
-                <th [ngClass]="'tableHeaderCellStyle'">Date</th>
-                <th [ngClass]="'tableHeaderCellStyle'">Amount</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-invo [pSelectableRow]="invo">
-            <tr [ngClass]="'tableRowStyle'">
-                <td pEditableColumn [ngClass]="'tableCellStyle'">
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="date" [(ngModel)]="invo.date" required [ngClass]="'inputStyle'">
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            <span class="outputDate">{{invo.date | date:"yyyy/MM/dd"}}</span>
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
-                <td pEditableColumn [ngClass]="'tableCellStyle'">
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="number" [(ngModel)]="invo.amount" required [ngClass]="'inputStyle'">
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            ${{invo.amount}}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="footer">
-            <tr [ngClass]="'tableRowStyle'">
-                <td [ngClass]="'tableCellStyle'">Totals</td>
-                <td [ngClass]="'tableCellStyle'">${{calculateTotal()}}</td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="summary" let-rowData>
-            <div style="text-align:left">
-                <button mat-raised-button color="primary" (click)="showDialogToAdd()">Add</button>
-                <!-- <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button> -->
-            </div>
-        </ng-template>
-    </p-table>
 </mat-card>
 
 

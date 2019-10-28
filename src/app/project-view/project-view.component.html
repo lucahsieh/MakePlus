@@ -1,8 +1,11 @@
 <a routerLink="/project/edit/{{project.ID}}">
     <button mat-stroked-button>Modify</button>
 </a>
-<app-overview [project]="project" [readMode]="true"></app-overview>
 
-<app-invoice [invoices]="project.invoiceArr"></app-invoice>
+
+
+<app-overview [project]="project" [readMode]="true"></app-overview>
+<app-workload [workloadArr]="project.workloadArr" [readMode]="true"></app-workload>
+<app-invoice [invoices]="project.invoiceArr" [readMode]="false"></app-invoice>
 
 <app-calendar [phases]="project.phaseArr"></app-calendar>

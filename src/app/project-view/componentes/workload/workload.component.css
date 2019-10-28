@@ -1,0 +1,13 @@
+mat-card {
+    margin: 10px;
+    width: fit-content;
+}
+
+.mat-elevation-z8 {
+    box-shadow: inherit;
+    border: 0px;
+}
+
+p-table {
+    width: fit-content;
+}

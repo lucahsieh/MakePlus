@@ -18,6 +18,7 @@ export interface PeriodicElement {
 export class InvoiceComponent implements OnInit {
 
   @Input() invoices: InvoiceItem[];
+  @Input() readMode:boolean;
 
   displayedColumns: string[] = ['date', 'amount'];
   cols: any[];

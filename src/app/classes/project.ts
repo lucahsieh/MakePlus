@@ -18,6 +18,9 @@ export class Project{
     endDate:Date;
     completion:number;
     recoredStoredCompleted:number;
+    businessCode:string;
+    isProposal:boolean;
+    costMultiplier:number;
 
     //quality system
     progressSurveySent:boolean;

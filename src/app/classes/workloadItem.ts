@@ -7,6 +7,7 @@ export class WorkloadItem {
     month4: number;
     month5: number;
     month6: number;
+    
     constructor(
         empID: number,
         empName: string,

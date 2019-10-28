@@ -46,6 +46,7 @@ import { InvoiceComponent } from './project-view/componentes/invoice/invoice.com
 import { ProjectEditComponent } from './project-view/project-edit/project-edit.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { OverviewComponent } from './project-view/componentes/overview/overview.component';
+import { WorkloadComponent } from './project-view/componentes/workload/workload.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { OverviewComponent } from './project-view/componentes/overview/overview.
     InvoiceComponent,
     ProjectEditComponent,
     OverviewComponent,
+    WorkloadComponent,
   ],
   imports: [
     MatCheckboxModule,

@@ -197,6 +197,9 @@ export class ProjectService {
         p.startDate = new Date(2019, 11, 26);
         p.endDate = new Date(2019, 11, 31);
         p.completion = Math.floor(Math.random() * 100) + 1;
+        p.businessCode="NA";
+        p.costMultiplier=1.75;
+        p.isProposal=false;
 
         p.recoredStoredCompleted = Math.floor(Math.random() * 100) + 1;
         p.progressSurveyRsult = true;
@@ -225,9 +228,7 @@ export class ProjectService {
 
         p.workloadArr = [
             new WorkloadItem(1, "Peter", 0, 0, 23, 31, 5, 6),
-            new WorkloadItem(2, "Reneil", 12, 3, 0, 0, 0, 0),
-            new WorkloadItem(2, "Reneil", 0, 113, 0, 0, 0, 0),
-        ];
+            new WorkloadItem(2, "Reneil", 12, 3, 0, 0, 0, 0)        ];
 
         p.salaryArr = [
             new SalaryItem(1, 1, "Peter", 35),
