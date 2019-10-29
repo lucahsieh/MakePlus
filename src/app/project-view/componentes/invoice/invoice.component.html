@@ -1,4 +1,5 @@
 <mat-card>
+    <mat-card-title>Invoice</mat-card-title>
     <p-table [style]="{'width':'280px'}" [columns]="cols" [value]="invoices" selectionMode="single" [(selection)]="selectedInvo" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
         <ng-template pTemplate="caption">
             Invoice
@@ -31,13 +32,13 @@
             </div>
         </ng-template> -->
     </p-table>
-    <button mat-raised-button color="primary" (click)="showDialogToAdd()" style="margin: 10px; margin-left: 77%;">Add</button>
+    <button color="primary" (click)="showDialogToAdd()" style="margin: 10px; margin-left: 77%;" *ngIf="!readMode">Add</button>
 
 </mat-card>
 
 
 
-<p-dialog header="Invoice Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '300px'}" appendTo="body">
+<p-dialog header="Invoice Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '300px'}" appendTo="body" *ngIf="!readMode">
     <div class="ui-g ui-fluid" *ngIf="invo">
         <div class="ui-g-12">
             <div class="ui-g-4">
