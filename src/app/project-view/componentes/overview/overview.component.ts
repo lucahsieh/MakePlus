@@ -4,6 +4,8 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 import { EmployeeListService } from 'src/app/service/employee-list.service';
 import { Employee } from 'src/app/classes/employee';
 import { WorkloadItem } from 'src/app/classes/workloadItem';
+import { EmployeeSalary } from 'src/app/classes/employeeSalary';
+import { SalaryPhaseItem } from 'src/app/classes/salaryPhaseItem';
 
 @Component({
   selector: 'app-overview',
@@ -47,12 +49,15 @@ export class OverviewComponent implements OnInit {
   }
 
   teamMemberSelectionChanged(e) {
-    var id = this.findIdByName(e);
+    var id = this.findEmployeeByName(e).empID;
+    let wage = this.findEmployeeByName(e).wage;
     var selected = this.isSelected(e);
     if(selected){
       this.addToWorkloadTable(id,e);
+      this.addToSalaryTable(id,e,wage);
     }else{
       this.removeFromWorkloadTable(e);
+      this.removeFromSalaryTable(id);
     }
     //TODO: save selected into this. members & leads.
   }
@@ -63,7 +68,18 @@ export class OverviewComponent implements OnInit {
     }
     return false;
   }
-
+  private addToSalaryTable(id:number,name:string,wage:number){
+    let temp = new EmployeeSalary();
+    temp.empID=id;
+    temp.empName=name;
+    temp.wage=wage;
+    for (var j = 0; j < this.project.phaseArr.length; j++) {
+        var phaseID = this.project.phaseArr[j].phaseID;
+        var phaseName = this.project.phaseArr[j].name;
+        temp.salaryPhaseItem.push(new SalaryPhaseItem(phaseID,phaseName, 0, 0, ""));
+    }
+    this.project.employeeSalary.push(temp);
+  }
   private addToWorkloadTable(id:number,name:string){
     let temp = new WorkloadItem(id,name,0,0,0,0,0,0);
     this.project.workloadArr.push(temp);
@@ -75,17 +91,27 @@ export class OverviewComponent implements OnInit {
       }
     }
   }
+  private removeFromSalaryTable(id:number){
+    for(var i =0;i<this.project.employeeSalary.length;i++){
+      if(id == this.project.employeeSalary[i].empID){
+        this.project.employeeSalary.splice(i,1);
+      }
+    }
+  }
 
-  private findIdByName(name:string){
+  private findEmployeeByName(name:string){
     for(var i = 0; i< this.source.length;i++){
       if(this.source[i].name == name)
-        return this.source[i].empID;
+        return this.source[i];
     }
   }
 
   getAllEmployees(): void {
     this.employeeListService.getAllEmployees()
       .subscribe(employees => this.source = employees);
+
+      console.log("list of empoyees");
+    console.log(JSON.stringify(this.source));
 
   }
 

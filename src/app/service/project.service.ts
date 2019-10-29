@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
@@ -9,9 +8,10 @@ import { Project } from '../classes/project';
 import { Employee } from '../classes/employee';
 import { PhaseItem } from '../classes/phaseItem';
 import { WorkloadItem } from '../classes/workloadItem';
-import { SalaryItem } from '../classes/salaryItem';
+import { SalaryPhaseItem } from '../classes/salaryPhaseItem';
 import { MaterialItem } from '../classes/materialItem';
 import { InvoiceItem } from '../classes/invoiceItem';
+import { EmployeeSalary } from '../classes/employeeSalary';
 
 @Injectable({
     providedIn: 'root'
@@ -28,14 +28,14 @@ export class ProjectService {
         private http: HttpClient,
         private messageService: MessageService) { }
 
-      getProject(id: number): Observable<Project> {
+    getProject(id: number): Observable<Project> {
         //   const url = `${this.projectUrl}/${id}`;
         //   return this.http.get<Project>(url).pipe(
         //       tap(_ => this.log(`fetched project id=${id}`)),
         //       catchError(this.handleError<Project>(`getProject id=${id}`))
         //   );
         return of(this.createDummyProject(id));
-      };
+    };
 
 
 
@@ -197,10 +197,10 @@ export class ProjectService {
         p.startDate = new Date(2019, 11, 26);
         p.endDate = new Date(2019, 11, 31);
         p.completion = Math.floor(Math.random() * 100) + 1;
-        p.businessCode="NA";
-        p.costMultiplier=1.75;
-        p.isProposal=false;
-        p.isUnderISO13485=false;
+        p.businessCode = "NA";
+        p.costMultiplier = 1.75;
+        p.isProposal = false;
+        p.isUnderISO13485 = false;
 
         p.recoredStoredCompleted = Math.floor(Math.random() * 100) + 1;
         p.progressSurveyRsult = true;
@@ -209,11 +209,11 @@ export class ProjectService {
         p.followupSurveyResult = false;
 
         p.lead = [
-            new Employee(1, "Peter"),
+            new Employee(1, "Peter Ahn", 100),
         ];
         p.member = [
-            new Employee(2, "Reneil"),
-            new Employee(3, "Perry"),
+            new Employee(2, "Reneil Pascua", 100),
+            new Employee(3, "Perry Li", 200),
         ];
 
         p.phaseArr = [
@@ -229,22 +229,8 @@ export class ProjectService {
 
         p.workloadArr = [
             new WorkloadItem(1, "Peter", 0, 0, 23, 31, 5, 6),
-            new WorkloadItem(2, "Reneil", 12, 3, 0, 0, 0, 0)        ];
+            new WorkloadItem(2, "Reneil", 12, 3, 0, 0, 0, 0)];
 
-        p.salaryArr = [
-            new SalaryItem(1, 1, "Peter", 35),
-            new SalaryItem(2, 1, "Peter", 35),
-            new SalaryItem(3, 1, "Peter", 35),
-            new SalaryItem(4, 1, "Peter", 35),
-            new SalaryItem(1, 2, "Reneil", 40),
-            new SalaryItem(2, 2, "Reneil", 40),
-            new SalaryItem(3, 2, "Reneil", 40),
-            new SalaryItem(4, 2, "Reneil", 40),
-            new SalaryItem(1, 3, "Perry", 55),
-            new SalaryItem(2, 3, "Perry", 55),
-            new SalaryItem(3, 3, "Perry", 55),
-            new SalaryItem(4, 3, "Perry", 55),
-        ];
         p.invoiceArr = [
             new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 2)),
             new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 12)),
@@ -252,11 +238,32 @@ export class ProjectService {
         ];
 
         p.material = [
-            new MaterialItem(1),
-            new MaterialItem(2),
-            new MaterialItem(3),
-            new MaterialItem(4),
+            new MaterialItem(1, "consulting", 100, 200, "over $100"),
+            new MaterialItem(2, "Requirements", 100, 200, "over $100"),
+            new MaterialItem(3, "Concept", 100, 200, "over $100"),
+            new MaterialItem(4, "Detailed Design", 100, 200, "over $100"),
+            new MaterialItem(5, "Fabrication", 100, 200, "over $100"),
+            new MaterialItem(6, "Evaluation/ user study", 100, 200, "over $100"),
+            new MaterialItem(7, "Reporting", 100, 200, "over $100"),
+            new MaterialItem(8, "Validation", 100, 200, "over $100"),
         ];
+
+        for (var i = 0; i < p.member.length; i++) {
+            var id = p.member[i].empID;
+            var name = p.member[i].name;
+            let wagee = p.member[i].wage;
+            let temp = new EmployeeSalary();
+            temp.empID=id;
+            temp.empName=name;
+            temp.wage=wagee;
+            for (var j = 0; j < p.phaseArr.length; j++) {
+                var phaseID = p.phaseArr[j].phaseID;
+                var phaseName = p.phaseArr[j].name;
+                // let spi = new SalaryPhaseItem(phaseID, 0, 0, "");
+                temp.salaryPhaseItem.push(new SalaryPhaseItem(phaseID,phaseName, 0, 0, ""));
+            }
+            p.employeeSalary.push(temp);
+        }
         return p;
     };
 }

@@ -47,6 +47,11 @@ import { ProjectEditComponent } from './project-view/project-edit/project-edit.c
 import { MatNativeDateModule } from '@angular/material/core';
 import { OverviewComponent } from './project-view/componentes/overview/overview.component';
 import { WorkloadComponent } from './project-view/componentes/workload/workload.component';
+import { PhaseComponent } from './project-view/componentes/phase/phase.component';
+import { PhaseTrackingComponent } from './project-view/componentes/phase-tracking/phase-tracking.component';
+import { MaterialComponent } from './project-view/componentes/material/material.component';
+import { SalaryIndividualComponent } from './project-view/componentes/salary-individual/salary-individual.component';
+import { SalaryComponent } from './project-view/componentes/salary/salary.component';
 
 
 @NgModule({
@@ -61,6 +66,11 @@ import { WorkloadComponent } from './project-view/componentes/workload/workload.
     ProjectEditComponent,
     OverviewComponent,
     WorkloadComponent,
+    PhaseComponent,
+    PhaseTrackingComponent,
+    MaterialComponent,
+    SalaryIndividualComponent,
+    SalaryComponent,
   ],
   imports: [
     MatCheckboxModule,

@@ -1,16 +1,16 @@
 export class Employee {
     empID: number;
     name: string;
-    // wage: number;
+    wage: number;
 
     constructor(
         empID: number,
         name: string,
-        // wage: number,
+        wage: number,
         
     ) {
         this.empID=empID;
         this.name=name;
-        // this.wage=wage;
+        this.wage=wage;
     }
 }

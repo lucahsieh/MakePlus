@@ -1,11 +1,14 @@
 <a routerLink="/project/edit/{{project.ID}}">
     <button mat-stroked-button>Modify</button>
 </a>
+<!-- <app-salary-individual [readMode]="true" [employeeSalary]="project.employeeSalary[0]"></app-salary-individual> -->
+<app-salary [employeeSalaryArr]="project.employeeSalary" [readMode]="true"></app-salary>
 
+<app-material [material]="project.material" [readMode]="true"></app-material>
 
-
+<app-phase [phases]="project.phaseArr" [readMode]="true" [project]="project"></app-phase>
+<app-phase-tracking [phases]="project.phaseArr" [readMode]="true"></app-phase-tracking>
+<app-calendar [phases]="project.phaseArr"></app-calendar>
 <app-overview [project]="project" [readMode]="true"></app-overview>
 <app-workload [workloadArr]="project.workloadArr" [readMode]="true"></app-workload>
 <app-invoice [invoices]="project.invoiceArr" [readMode]="false"></app-invoice>
-
-<app-calendar [phases]="project.phaseArr"></app-calendar>

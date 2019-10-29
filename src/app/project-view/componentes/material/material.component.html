@@ -1,0 +1,72 @@
+<!-- <p [style.background-color]="true? 'blue' : 'green'"> Hello Color World! </p>
+<p bind-style.color="true? 'blue' : 'green'"> Hello Color World! </p>
+<p style.color="{{true ? 'blue' : 'green'}}"> Hello Color World! </p> -->
+
+<mat-card>
+    <mat-card-header>
+
+        <mat-card-title>Material Tracking</mat-card-title>
+    </mat-card-header>
+    <p-table [value]="material" [style]="{'width':'400px'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th [ngStyle]="{'width':'1px'}"></th>
+                <th>Phase Name</th>
+                <th [ngStyle]="{'width':'70px'}">Predicted</th>
+                <th [ngStyle]="{'width':'70px'}">Actual</th>
+                <th [ngStyle]="{'width':'90px'}">Impact</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+            <tr>
+                <td [ngStyle]="setPhaseBackgroundColor(i)"></td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.phaseName" [disabled]="true">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.phaseName}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.budget" required [disabled]="readMode">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            ${{rowData.budget}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.actual" required [disabled]="readMode">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            ${{rowData.actual}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.impact" required [disabled]="readMode">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.impact}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</mat-card>

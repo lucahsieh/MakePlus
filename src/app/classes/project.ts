@@ -1,9 +1,10 @@
 import{Employee}from './employee';
 import{WorkloadItem} from './workloadItem';
-import{SalaryItem} from './salaryItem';
+import{SalaryPhaseItem} from './salaryPhaseItem';
 import{PhaseItem}from './phaseItem';
 import{InvoiceItem} from './invoiceItem';
 import{MaterialItem} from './materialItem';
+import { EmployeeSalary } from './employeeSalary';
 
 export class Project{
     //project detail
@@ -43,10 +44,12 @@ export class Project{
     workloadArr:WorkloadItem[];
 
     //salary
-    salaryArr:SalaryItem[];
+    employeeSalary:EmployeeSalary[];
 
     //material
     material:MaterialItem[];
 
-    constructor(){}
+    constructor(){
+        this.employeeSalary=[];
+    }
 }

@@ -29,19 +29,19 @@ export class EmployeeListService {
 
   private createDummyEmployees() {
     return [
-      new Employee(1, "Peter"),
-      new Employee(2, "Reneil"),
-      new Employee(3, "Perry"),
-      new Employee(4, "Luca"),
-      new Employee(5, "xx5"),
-      new Employee(6, "xx6"),
-      new Employee(7, "xx7"),
-      new Employee(8, "xx8"),
-      new Employee(9, "xx9"),
-      new Employee(10, "xx10"),
-      new Employee(11, "xx11"),
-      new Employee(12, "xx12"),
-      new Employee(13, "xx13"),
+      new Employee(1, "Peter Ahn",100),
+      new Employee(2, "Reneil Pascua",100),
+      new Employee(3, "Perry Li",100),
+      new Employee(4, "Luca Hsieh",100),
+      new Employee(5, "Susanna Vinson",100),
+      new Employee(6, "Mali French",100),
+      new Employee(7, "Mayur Watt",100),
+      new Employee(8, "Shauna Pemberton",100),
+      new Employee(9, "Korban Bloggs",100),
+      new Employee(10, "Zacharias Cotton",100),
+      new Employee(11, "Bobbie Chung",100),
+      new Employee(12, "Cally Wooten",100),
+      new Employee(13, "Trent Blanchard",100),
     ];
 
   }
