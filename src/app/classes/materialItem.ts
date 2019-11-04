@@ -1,8 +1,8 @@
 export class MaterialItem {
     phaseID: number;
     phaseName:string;
-    budget: number;
-    actual: number;
+    projectedBudget: number;     //budget
+    actualBudget: number;     //actual
     impact: string;
 
     constructor(
@@ -14,8 +14,8 @@ export class MaterialItem {
     ){
         this.phaseID=phaseID;
         this.phaseName=phaseName;
-        this.actual=actual;
-        this.budget=budget;
+        this.actualBudget=actual;
+        this.projectedBudget=budget;
         this.impact=impact;
     }
 }

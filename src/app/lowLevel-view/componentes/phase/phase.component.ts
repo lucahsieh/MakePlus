@@ -122,7 +122,7 @@ export class PhaseComponent implements OnInit {
   }
   showDialogToAdd() {
     this.newPhase = true;
-    this.phase = new PhaseItem(1, "", new Date(), new Date()); //TODO: The ID should be fixed
+    this.phase = new PhaseItem(1, "", new Date(), new Date(),0,0,""); //TODO: The ID should be fixed
     this.displayDialog = true;
   }
 

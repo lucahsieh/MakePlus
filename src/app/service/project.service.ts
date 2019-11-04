@@ -197,6 +197,7 @@ export class ProjectService {
         p.startDate = new Date(2019, 11, 26);
         p.endDate = new Date(2019, 11, 31);
         p.completion = Math.floor(Math.random() * 100) + 1;
+        
         p.businessCode = "NA";
         p.costMultiplier = 1.75;
         p.isProposal = false;
@@ -217,14 +218,14 @@ export class ProjectService {
         ];
 
         p.phaseArr = [
-            new PhaseItem(1, "consulting", new Date(2019, 10, 16), new Date(2019, 10, 30)),
-            new PhaseItem(2, "Requirements", new Date(2019, 10, 31), new Date(2019, 11, 5)),
-            new PhaseItem(3, "Concept", new Date(2019, 11, 6), new Date(2019, 11, 21)),
-            new PhaseItem(4, "Detailed Design", new Date(2019, 11, 22), new Date(2019, 12, 10)),
-            new PhaseItem(5, "Fabrication", new Date(2019, 12, 10), new Date(2019, 12, 20)),
-            new PhaseItem(6, "Evaluation/ user study", new Date(2019, 12, 21), new Date(2019, 12, 31)),
-            new PhaseItem(7, "Reporting", new Date(2020, 1, 1), new Date(2020, 1, 10)),
-            new PhaseItem(8, "Validation", new Date(2020, 1, 11), new Date(2020, 1, 15)),
+            new PhaseItem(1, "consulting", new Date(2019, 10, 16), new Date(2019, 10, 30),20,25,"High impact"),
+            new PhaseItem(2, "Requirements", new Date(2019, 10, 31), new Date(2019, 11, 5),20,25,"High impact"),
+            new PhaseItem(3, "Concept", new Date(2019, 11, 6), new Date(2019, 11, 21),20,25,"High impact"),
+            new PhaseItem(4, "Detailed Design", new Date(2019, 11, 22), new Date(2019, 12, 10),20,25,"High impact"),
+            new PhaseItem(5, "Fabrication", new Date(2019, 12, 10), new Date(2019, 12, 20),20,25,"High impact"),
+            new PhaseItem(6, "Evaluation/ user study", new Date(2019, 12, 21), new Date(2019, 12, 31),20,25,"High impact"),
+            new PhaseItem(7, "Reporting", new Date(2020, 1, 1), new Date(2020, 1, 10),20,25,"High impact"),
+            new PhaseItem(8, "Validation", new Date(2020, 1, 11), new Date(2020, 1, 15),20,25,"High impact"),
         ];
 
         p.workloadArr = [
@@ -264,6 +265,7 @@ export class ProjectService {
             }
             p.employeeSalary.push(temp);
         }
+        console.log("getProject(id)\n"+JSON.stringify(p));
         return p;
     };
 }

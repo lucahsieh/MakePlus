@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProjectViewComponent } from './project-view/project-view.component';
+import { ProjectViewComponent } from './lowLevel-view/project-view.component';
 import { HighlevelViewComponent } from './highlevel-view/highlevel-view.component';
-import { WorkloadViewComponent } from './workload-view/workload-view.component';
-import { ProjectEditComponent } from './project-view/project-edit/project-edit.component';
+import { WorkloadViewComponent } from './midLevel-view/workload-view.component';
+import { ProjectEditComponent } from './lowLevel-view/project-edit/project-edit.component';
 
 
 

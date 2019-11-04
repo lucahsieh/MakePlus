@@ -30,7 +30,7 @@ export class EmployeeListService {
   private createDummyEmployees() {
     return [
       new Employee(1, "Peter Ahn",100),
-      new Employee(2, "Reneil Pascua",100),
+      new Employee(2, "Reneil Pascua",100), 
       new Employee(3, "Perry Li",100),
       new Employee(4, "Luca Hsieh",100),
       new Employee(5, "Susanna Vinson",100),
