@@ -3,7 +3,7 @@ import { PhaseItem } from 'src/app/classes/phaseItem';
 import { PhaseColors } from 'src/app/classes/phaseColors';
 import { MaterialItem } from 'src/app/classes/materialItem';
 import { Project } from 'src/app/classes/project';
-import { SalaryPhaseItem } from 'src/app/classes/salaryPhaseItem';
+import { PhaseDetail } from 'src/app/classes/phaseDetail';
 
 @Component({
   selector: 'app-phase',
@@ -41,8 +41,7 @@ export class PhaseComponent implements OnInit {
   }
 
   save() {
-    console.log(this.phase);
-    console.log(this.phases);
+    let startDate = new Date();
     this.phase.startDate = this.parsDateFromStrToDate(this.phase.startDate.toString());
     this.phase.endDate = this.parsDateFromStrToDate(this.phase.endDate.toString());
     if (this.newPhase) {
@@ -59,9 +58,9 @@ export class PhaseComponent implements OnInit {
   }
   private addToSalaryTable(id:number) {
     var phaseName = this.phase.name;
-    let temp = new SalaryPhaseItem(id, phaseName, 0, 0, "");
-    for(var i = 0; i < this.project.employeeSalary.length;i++){
-      this.project.employeeSalary[i].salaryPhaseItem.push(temp);
+    let temp = new PhaseDetail(id, phaseName, 0, 0, "");
+    for(var i = 0; i < this.project.employeeSalaryList.length;i++){
+      this.project.employeeSalaryList[i].phaseDetailsList.push(temp);
     }
   }
 
@@ -98,10 +97,10 @@ export class PhaseComponent implements OnInit {
     }
   }
   private removeFromSalaryTable(id: number) {
-    for(var i = 0; i < this.project.employeeSalary.length;i++){
-      for(var j = 0; j<this.project.employeeSalary[i].salaryPhaseItem.length;j++){
-        if (id == this.project.employeeSalary[i].salaryPhaseItem[j].phaseID) {
-          this.project.employeeSalary[i].salaryPhaseItem.splice(j, 1);
+    for(var i = 0; i < this.project.employeeSalaryList.length;i++){
+      for(var j = 0; j<this.project.employeeSalaryList[i].phaseDetailsList.length;j++){
+        if (id == this.project.employeeSalaryList[i].phaseDetailsList[j].phaseID) {
+          this.project.employeeSalaryList[i].phaseDetailsList.splice(j, 1);
         }
       }
     }

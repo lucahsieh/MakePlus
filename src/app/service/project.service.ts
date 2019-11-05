@@ -8,10 +8,11 @@ import { Project } from '../classes/project';
 import { Employee } from '../classes/employee';
 import { PhaseItem } from '../classes/phaseItem';
 import { WorkloadItem } from '../classes/workloadItem';
-import { SalaryPhaseItem } from '../classes/salaryPhaseItem';
+import { PhaseDetail } from '../classes/phaseDetail';
 import { MaterialItem } from '../classes/materialItem';
 import { InvoiceItem } from '../classes/invoiceItem';
 import { EmployeeSalary } from '../classes/employeeSalary';
+
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +20,8 @@ import { EmployeeSalary } from '../classes/employeeSalary';
 export class ProjectService {
 
     private projectUrl = 'api/project';  // URL to web api
+
+    url = 'http://localhost:3000/singleProject';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,20 +33,19 @@ export class ProjectService {
 
     getProject(id: number): Observable<Project> {
         //   const url = `${this.projectUrl}/${id}`;
-        //   return this.http.get<Project>(url).pipe(
+        //   return this.http.get<Project>(this.url).pipe(
         //       tap(_ => this.log(`fetched project id=${id}`)),
         //       catchError(this.handleError<Project>(`getProject id=${id}`))
         //   );
-        return of(this.createDummyProject(id));
+
+          return this.http.get<Project>(this.url).pipe(
+              tap(_ => this.log(`fetched project id`)),
+              catchError(this.handleError<Project>(`getProject id`))
+          );
+
+        // return this.http.get<Project>(this.url)
+        //   .pipe(map((response: any) => new Project(response.json())));
     };
-
-
-
-    // getProject(id: number) {
-    //     return this.createDummyProject(id);
-    // }
-
-
 
 
     /** GET hero by id. Return `undefined` when id not found */
@@ -185,87 +187,87 @@ export class ProjectService {
     //   }
 
 
-    private createDummyProject(id: number) {
-        var p = new Project();
-        p.ID = id;
-        p.Name = "ISSP Project";
-        p.desc = `Web Application for project management. The clients will be able to view/edit ongoing and past projects in both high level and low level details such as but not limited to final budget of the project, completion timeline, and individual project members’ invested hours respectively.`;
-        p.salaryBudget = Math.floor(Math.random() * 10000) + 1;
-        p.totalInvoice = Math.floor(Math.random() * 10000) + 1;
-        p.materialBudget = Math.floor(Math.random() * 10000) + 1;
-        p.spendToDate = Math.floor(Math.random() * 10000) + 1;
-        p.startDate = new Date(2019, 11, 26);
-        p.endDate = new Date(2019, 11, 31);
-        p.completion = Math.floor(Math.random() * 100) + 1;
+    // private createDummyProject(id: number) {
+    //     var p = new Project();
+    //     p.ID = id;
+    //     p.Name = "ISSP Project";
+    //     p.desc = `Web Application for project management. The clients will be able to view/edit ongoing and past projects in both high level and low level details such as but not limited to final budget of the project, completion timeline, and individual project members’ invested hours respectively.`;
+    //     p.salaryBudget = Math.floor(Math.random() * 10000) + 1;
+    //     p.totalInvoice = Math.floor(Math.random() * 10000) + 1;
+    //     p.materialBudget = Math.floor(Math.random() * 10000) + 1;
+    //     p.spendToDate = Math.floor(Math.random() * 10000) + 1;
+    //     p.startDate = new Date(2019, 11, 26);
+    //     p.endDate = new Date(2019, 11, 31);
+    //     p.completion = Math.floor(Math.random() * 100) + 1;
         
-        p.businessCode = "NA";
-        p.costMultiplier = 1.75;
-        p.isProposal = false;
-        p.isUnderISO13485 = false;
+    //     p.businessCode = "NA";
+    //     p.costMultiplier = 1.75;
+    //     p.isProposal = false;
+    //     p.isUnderISO13485 = false;
 
-        p.recoredStoredCompleted = Math.floor(Math.random() * 100) + 1;
-        p.progressSurveyRsult = true;
-        p.progressSurveySent = true;
-        p.followupSurveySent = true;
-        p.followupSurveyResult = false;
+    //     p.recoredStoredCompleted = Math.floor(Math.random() * 100) + 1;
+    //     p.progressSurveyRsult = true;
+    //     p.progressSurveySent = true;
+    //     p.followupSurveySent = true;
+    //     p.followupSurveyResult = false;
 
-        p.lead = [
-            new Employee(1, "Peter Ahn", 100),
-        ];
-        p.member = [
-            new Employee(2, "Reneil Pascua", 100),
-            new Employee(3, "Perry Li", 200),
-        ];
+    //     p.lead = [
+    //         new Employee(1, "Peter Ahn", 100),
+    //     ];
+    //     p.member = [
+    //         new Employee(2, "Reneil Pascua", 100),
+    //         new Employee(3, "Perry Li", 200),
+    //     ];
 
-        p.phaseArr = [
-            new PhaseItem(1, "consulting", new Date(2019, 10, 16), new Date(2019, 10, 30),20,25,"High impact"),
-            new PhaseItem(2, "Requirements", new Date(2019, 10, 31), new Date(2019, 11, 5),20,25,"High impact"),
-            new PhaseItem(3, "Concept", new Date(2019, 11, 6), new Date(2019, 11, 21),20,25,"High impact"),
-            new PhaseItem(4, "Detailed Design", new Date(2019, 11, 22), new Date(2019, 12, 10),20,25,"High impact"),
-            new PhaseItem(5, "Fabrication", new Date(2019, 12, 10), new Date(2019, 12, 20),20,25,"High impact"),
-            new PhaseItem(6, "Evaluation/ user study", new Date(2019, 12, 21), new Date(2019, 12, 31),20,25,"High impact"),
-            new PhaseItem(7, "Reporting", new Date(2020, 1, 1), new Date(2020, 1, 10),20,25,"High impact"),
-            new PhaseItem(8, "Validation", new Date(2020, 1, 11), new Date(2020, 1, 15),20,25,"High impact"),
-        ];
+    //     p.phaseArr = [
+    //         new PhaseItem(1, "consulting", new Date(2019, 10, 16), new Date(2019, 10, 30),20,25,"High impact"),
+    //         new PhaseItem(2, "Requirements", new Date(2019, 10, 31), new Date(2019, 11, 5),20,25,"High impact"),
+    //         new PhaseItem(3, "Concept", new Date(2019, 11, 6), new Date(2019, 11, 21),20,25,"High impact"),
+    //         new PhaseItem(4, "Detailed Design", new Date(2019, 11, 22), new Date(2019, 12, 10),20,25,"High impact"),
+    //         new PhaseItem(5, "Fabrication", new Date(2019, 12, 10), new Date(2019, 12, 20),20,25,"High impact"),
+    //         new PhaseItem(6, "Evaluation/ user study", new Date(2019, 12, 21), new Date(2019, 12, 31),20,25,"High impact"),
+    //         new PhaseItem(7, "Reporting", new Date(2020, 1, 1), new Date(2020, 1, 10),20,25,"High impact"),
+    //         new PhaseItem(8, "Validation", new Date(2020, 1, 11), new Date(2020, 1, 15),20,25,"High impact"),
+    //     ];
 
-        p.workloadArr = [
-            new WorkloadItem(1, "Peter", 0, 0, 23, 31, 5, 6),
-            new WorkloadItem(2, "Reneil", 12, 3, 0, 0, 0, 0)];
+    //     p.workloadArr = [
+    //         new WorkloadItem(1, "Peter", 0, 0, 23, 31, 5, 6),
+    //         new WorkloadItem(2, "Reneil", 12, 3, 0, 0, 0, 0)];
 
-        p.invoiceArr = [
-            new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 2)),
-            new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 12)),
-            new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 22)),
-        ];
+    //     p.invoiceArr = [
+    //         new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 2)),
+    //         new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 12)),
+    //         new InvoiceItem(Math.floor(Math.random() * 1000) + 101, new Date(2019, 11, 22)),
+    //     ];
 
-        p.material = [
-            new MaterialItem(1, "consulting", 100, 200, "over $100"),
-            new MaterialItem(2, "Requirements", 100, 200, "over $100"),
-            new MaterialItem(3, "Concept", 100, 200, "over $100"),
-            new MaterialItem(4, "Detailed Design", 100, 200, "over $100"),
-            new MaterialItem(5, "Fabrication", 100, 200, "over $100"),
-            new MaterialItem(6, "Evaluation/ user study", 100, 200, "over $100"),
-            new MaterialItem(7, "Reporting", 100, 200, "over $100"),
-            new MaterialItem(8, "Validation", 100, 200, "over $100"),
-        ];
+    //     p.material = [
+    //         new MaterialItem(1, "consulting", 100, 200, "over $100"),
+    //         new MaterialItem(2, "Requirements", 100, 200, "over $100"),
+    //         new MaterialItem(3, "Concept", 100, 200, "over $100"),
+    //         new MaterialItem(4, "Detailed Design", 100, 200, "over $100"),
+    //         new MaterialItem(5, "Fabrication", 100, 200, "over $100"),
+    //         new MaterialItem(6, "Evaluation/ user study", 100, 200, "over $100"),
+    //         new MaterialItem(7, "Reporting", 100, 200, "over $100"),
+    //         new MaterialItem(8, "Validation", 100, 200, "over $100"),
+    //     ];
 
-        for (var i = 0; i < p.member.length; i++) {
-            var id = p.member[i].empID;
-            var name = p.member[i].name;
-            let wagee = p.member[i].wage;
-            let temp = new EmployeeSalary();
-            temp.empID=id;
-            temp.empName=name;
-            temp.wage=wagee;
-            for (var j = 0; j < p.phaseArr.length; j++) {
-                var phaseID = p.phaseArr[j].phaseID;
-                var phaseName = p.phaseArr[j].name;
-                // let spi = new SalaryPhaseItem(phaseID, 0, 0, "");
-                temp.salaryPhaseItem.push(new SalaryPhaseItem(phaseID,phaseName, 0, 0, ""));
-            }
-            p.employeeSalary.push(temp);
-        }
-        console.log("getProject(id)\n"+JSON.stringify(p));
-        return p;
-    };
+    //     for (var i = 0; i < p.member.length; i++) {
+    //         var id = p.member[i].empID;
+    //         var name = p.member[i].name;
+    //         let wagee = p.member[i].wage;
+    //         let temp = new EmployeeSalary();
+    //         temp.empID=id;
+    //         temp.empName=name;
+    //         temp.wage=wagee;
+    //         for (var j = 0; j < p.phaseArr.length; j++) {
+    //             var phaseID = p.phaseArr[j].phaseID;
+    //             var phaseName = p.phaseArr[j].name;
+    //             // let spi = new PhaseDetail(phaseID, 0, 0, "");
+    //             temp.PhaseDetail.push(new PhaseDetail(phaseID,phaseName, 0, 0, ""));
+    //         }
+    //         p.employeeSalary.push(temp);
+    //     }
+    //     console.log("getProject(id)\n"+JSON.stringify(p));
+    //     return p;
+    // };
 }

@@ -1,12 +1,16 @@
 import{Employee}from './employee';
 import{WorkloadItem} from './workloadItem';
-import{SalaryPhaseItem} from './salaryPhaseItem';
+import{PhaseDetail} from './phaseDetail';
 import{PhaseItem}from './phaseItem';
 import{InvoiceItem} from './invoiceItem';
 import{MaterialItem} from './materialItem';
 import { EmployeeSalary } from './employeeSalary';
 
 export class Project{
+
+    constructor(data: any) {
+        Object.assign(this, data);
+      }
     //project detail
     ID : number;
     Name:string;
@@ -44,12 +48,10 @@ export class Project{
     workloadArr:WorkloadItem[];
 
     //salary
-    employeeSalary:EmployeeSalary[];
+    employeeSalaryList:EmployeeSalary[];
 
     //material
     material:MaterialItem[];
 
-    constructor(){
-        this.employeeSalary=[];
-    }
+    
 }

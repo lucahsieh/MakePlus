@@ -1,49 +1,51 @@
-<a routerLink="/project/edit/{{project.ID}}">
-    <button mat-stroked-button>Modify</button>
-</a>
+<div *ngIf="isDataLoaded">
+    <a routerLink="/project/edit/{{project.ID}}">
+        <button mat-stroked-button>Modify</button>
+    </a>
 
-<!-- <app-salary-individual [readMode]="true" [employeeSalary]="project.employeeSalary[0]"></app-salary-individual> -->
-<app-overview [project]="project" [readMode]="true"></app-overview>
-<app-workload [workloadArr]="project.workloadArr" [readMode]="true"></app-workload>
-<mat-card>
-    <mat-card-title>Phase</mat-card-title>
+    <!-- <app-salary-individual [readMode]="true" [employeeSalary]="project.employeeSalary[0]"></app-salary-individual> -->
+    <app-overview [project]="project" [readMode]="true"></app-overview>
+    <app-workload [workloadArr]="project.workloadArr" [readMode]="true"></app-workload>
+    <mat-card>
+        <mat-card-title>Phase</mat-card-title>
+        <table>
+            <tr>
+                <td>
+                    <app-phase [phases]="project.phaseArr" [readMode]="true" [project]="project"></app-phase>
+                </td>
+
+                <td>
+                    <app-calendar [phases]="project.phaseArr"></app-calendar>
+                </td>
+            </tr>
+        </table>
+    </mat-card>
+
     <table>
         <tr>
             <td>
-                <app-phase [phases]="project.phaseArr" [readMode]="true" [project]="project"></app-phase>
+                <app-phase-tracking [phases]="project.phaseArr" [readMode]="true"></app-phase-tracking>
             </td>
 
             <td>
-                <app-calendar [phases]="project.phaseArr"></app-calendar>
+                <app-material [readMode]="true" [material]="project.material"></app-material>
+            </td>
+            <td>
+                <app-invoice [invoices]="project.invoiceArr" [readMode]="true"></app-invoice>
             </td>
         </tr>
     </table>
-</mat-card>
-
-<table>
-    <tr>
-        <td>
-            <app-phase-tracking [phases]="project.phaseArr" [readMode]="true"></app-phase-tracking>
-        </td>
-
-        <td>
-            <app-material [readMode]="true" [material]="project.material"></app-material>
-        </td>
-        <td>
-            <app-invoice [invoices]="project.invoiceArr" [readMode]="true"></app-invoice>
-        </td>
-    </tr>
-</table>
 
 
-<table>
-    <tr>
-        <td>
-            <app-salary [employeeSalaryArr]="project.employeeSalary" [readMode]="true"></app-salary>
+    <table>
+        <tr>
+            <td>
+                <app-salary [employeeSalaryArr]="project.employeeSalaryList" [readMode]="true"></app-salary>
 
-        </td>
-    </tr>
-</table>
+            </td>
+        </tr>
+    </table>
+</div>
 
 <!-- <app-salary [employeeSalaryArr]="project.employeeSalary" [readMode]="true"></app-salary>
 

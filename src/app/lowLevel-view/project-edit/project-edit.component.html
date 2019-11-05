@@ -1,42 +1,44 @@
 <!-- <app-salary-individual [readMode]="false" [employeeSalary]="project.employeeSalary[0]"></app-salary-individual> -->
-<app-overview [project]="project" [readMode]="false"></app-overview>
-<app-workload [workloadArr]="project.workloadArr" [readMode]="false"></app-workload>
-<mat-card>
-    <mat-card-title>Phase</mat-card-title>
+<div *ngIf="isDataLoaded">
+    <app-overview [project]="project" [readMode]="false"></app-overview>
+    <app-workload [workloadArr]="project.workloadArr" [readMode]="false"></app-workload>
+    <mat-card>
+        <mat-card-title>Phase</mat-card-title>
+        <table>
+            <tr>
+                <td>
+                    <app-phase [phases]="project.phaseArr" [readMode]="false" [project]="project"></app-phase>
+                </td>
+
+                <td>
+                    <app-calendar [phases]="project.phaseArr"></app-calendar>
+                </td>
+            </tr>
+        </table>
+    </mat-card>
+
     <table>
         <tr>
             <td>
-                <app-phase [phases]="project.phaseArr" [readMode]="false" [project]="project"></app-phase>
+                <app-phase-tracking [phases]="project.phaseArr" [readMode]="false"></app-phase-tracking>
             </td>
 
             <td>
-                <app-calendar [phases]="project.phaseArr"></app-calendar>
+                <app-material [readMode]="false" [material]="project.material"></app-material>
+            </td>
+            <td>
+                <app-invoice [invoices]="project.invoiceArr" [readMode]="false"></app-invoice>
             </td>
         </tr>
     </table>
-</mat-card>
-
-<table>
-    <tr>
-        <td>
-            <app-phase-tracking [phases]="project.phaseArr" [readMode]="false"></app-phase-tracking>
-        </td>
-
-        <td>
-            <app-material [readMode]="false" [material]="project.material"></app-material>
-        </td>
-        <td>
-            <app-invoice [invoices]="project.invoiceArr" [readMode]="false"></app-invoice>
-        </td>
-    </tr>
-</table>
 
 
-<table>
-    <tr>
-        <td>
-            <app-salary [employeeSalaryArr]="project.employeeSalary" [readMode]="false"></app-salary>
+    <table>
+        <tr>
+            <td>
+                <app-salary [employeeSalaryArr]="project.employeeSalaryList" [readMode]="false"></app-salary>
 
-        </td>
-    </tr>
-</table>
+            </td>
+        </tr>
+    </table>
+</div>

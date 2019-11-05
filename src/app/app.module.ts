@@ -75,6 +75,7 @@ import { ProjectComponent } from './highlevel-view/component/project/project.com
     SalaryComponent,
     WorkloadTableComponent,
     ProjectComponent,
+    
   ],
   imports: [
     MatCheckboxModule,

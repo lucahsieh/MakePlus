@@ -1,16 +1,16 @@
 
-import{SalaryPhaseItem} from './salaryPhaseItem';
+import{PhaseDetail} from './phaseDetail';
 
 export class EmployeeSalary {
     empID: number;
     empName: string;
     wage:number;
-    salaryPhaseItem:SalaryPhaseItem[];
+    phaseDetailsList:PhaseDetail[];
 
     constructor(
         
     ) {
-        this.salaryPhaseItem=[];
+        this.phaseDetailsList=[];
     }
     // constructor(
     //     empID: number,

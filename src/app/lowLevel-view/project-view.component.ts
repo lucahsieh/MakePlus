@@ -18,6 +18,7 @@ export class ProjectViewComponent implements OnInit {
 
   // @Input() 
   project: Project;
+  isDataLoaded: boolean;
   
 
   constructor(
@@ -27,16 +28,19 @@ export class ProjectViewComponent implements OnInit {
 
   ngOnInit() {
     this.getProject();
-    
-    console.log(JSON.stringify(this.project));
+    this.isDataLoaded = false;
   }
 
   getProject(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     // this.project = this.projectService.getProject(id);
     this.projectService.getProject(id)
-      .subscribe(project => this.project = project);
-    
+      .subscribe(project => {
+        this.project = new Project(project);
+        console.log("current this in callback");
+        console.log(this.project);
+        this.isDataLoaded = true;
+      });
   }
 
 

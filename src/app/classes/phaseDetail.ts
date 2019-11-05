@@ -1,4 +1,4 @@
-export class SalaryPhaseItem {
+export class PhaseDetail {
     phaseID: number;
     phaseName: string;
     budgetHr: number;

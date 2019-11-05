@@ -5,7 +5,7 @@ import { EmployeeListService } from 'src/app/service/employee-list.service';
 import { Employee } from 'src/app/classes/employee';
 import { WorkloadItem } from 'src/app/classes/workloadItem';
 import { EmployeeSalary } from 'src/app/classes/employeeSalary';
-import { SalaryPhaseItem } from 'src/app/classes/salaryPhaseItem';
+import { PhaseDetail } from 'src/app/classes/phaseDetail';
 
 @Component({
   selector: 'app-overview',
@@ -35,6 +35,8 @@ export class OverviewComponent implements OnInit {
     this.populateBusinessCodes();
 
   }
+
+
 
   private initTeamMembersOptions(): void {
     for (var i = 0; i < this.source.length; i++) {
@@ -76,9 +78,9 @@ export class OverviewComponent implements OnInit {
     for (var j = 0; j < this.project.phaseArr.length; j++) {
         var phaseID = this.project.phaseArr[j].phaseID;
         var phaseName = this.project.phaseArr[j].name;
-        temp.salaryPhaseItem.push(new SalaryPhaseItem(phaseID,phaseName, 0, 0, ""));
+        temp.phaseDetailsList.push(new PhaseDetail(phaseID,phaseName, 0, 0, ""));
     }
-    this.project.employeeSalary.push(temp);
+    this.project.employeeSalaryList.push(temp);
   }
   private addToWorkloadTable(id:number,name:string){
     let temp = new WorkloadItem(id,name,0,0,0,0,0,0);
@@ -92,9 +94,9 @@ export class OverviewComponent implements OnInit {
     }
   }
   private removeFromSalaryTable(id:number){
-    for(var i =0;i<this.project.employeeSalary.length;i++){
-      if(id == this.project.employeeSalary[i].empID){
-        this.project.employeeSalary.splice(i,1);
+    for(var i =0;i<this.project.employeeSalaryList.length;i++){
+      if(id == this.project.employeeSalaryList[i].empID){
+        this.project.employeeSalaryList.splice(i,1);
       }
     }
   }
@@ -112,6 +114,10 @@ export class OverviewComponent implements OnInit {
 
       console.log("list of empoyees");
     console.log(JSON.stringify(this.source));
+
+  }
+
+  setProject(project : Project){
 
   }
 
