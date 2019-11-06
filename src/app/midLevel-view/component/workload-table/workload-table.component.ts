@@ -44,7 +44,6 @@ export class WorkloadTableComponent implements OnInit {
       { field: 'projectEndDate', header: 'Projected End Date' }
     ];
     this.getWorkload();
-    console.log("Get all workload items for mid-level\n"+JSON.stringify(this.workloadPageItems));
     this.getEmployees();
     this.paraEmployeeListToSelectItem();
     this.initMonths();
@@ -53,7 +52,11 @@ export class WorkloadTableComponent implements OnInit {
 
   getWorkload(): void {
     this.workloadPageService.getAllWorkloadItems()
-      .subscribe(w => this.workloadPageItems = w);
+      .subscribe(w => {
+        this.workloadPageItems = w;
+        console.log("all workload for all employees api get result:");
+        console.log(JSON.stringify(this.workloadPageItems));
+      });
   }
 
   getEmployees(): void {
