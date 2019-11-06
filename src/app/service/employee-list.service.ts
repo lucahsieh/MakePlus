@@ -10,41 +10,65 @@ import { Employee } from '../classes/employee';
   providedIn: 'root'
 })
 export class EmployeeListService {
+
+  /** Test api call by using local sampleJson.json */
+  private url = 'http://localhost:3000/employees';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
   getAllEmployees(): Observable<Employee[]> {
-    //   const url = `${this.projectUrl}/${id}`;
-    //   return this.http.get<Project>(url).pipe(
-    //       tap(_ => this.log(`fetched project id=${id}`)),
-    //       catchError(this.handleError<Project>(`getProject id=${id}`))
-    //   );
-    return of(this.createDummyEmployees());
+    return this.http.get<Employee[]>(this.url).pipe(
+      tap(_ => this.log(`fetched project id`)),
+      catchError(this.handleError<Employee[]>(`getProject id`))
+    );
   };
 
-  private createDummyEmployees() {
-    return [
-      new Employee(1, "Peter Ahn",100),
-      new Employee(2, "Reneil Pascua",100), 
-      new Employee(3, "Perry Li",100),
-      new Employee(4, "Luca Hsieh",100),
-      new Employee(5, "Susanna Vinson",100),
-      new Employee(6, "Mali French",100),
-      new Employee(7, "Mayur Watt",100),
-      new Employee(8, "Shauna Pemberton",100),
-      new Employee(9, "Korban Bloggs",100),
-      new Employee(10, "Zacharias Cotton",100),
-      new Employee(11, "Bobbie Chung",100),
-      new Employee(12, "Cally Wooten",100),
-      new Employee(13, "Trent Blanchard",100),
-    ];
+  // private createDummyEmployees() {
+  //   return [
+  //     new Employee(1, "Peter Ahn",100),
+  //     new Employee(2, "Reneil Pascua",100), 
+  //     new Employee(3, "Perry Li",100),
+  //     new Employee(4, "Luca Hsieh",100),
+  //     new Employee(5, "Susanna Vinson",100),
+  //     new Employee(6, "Mali French",100),
+  //     new Employee(7, "Mayur Watt",100),
+  //     new Employee(8, "Shauna Pemberton",100),
+  //     new Employee(9, "Korban Bloggs",100),
+  //     new Employee(10, "Zacharias Cotton",100),
+  //     new Employee(11, "Bobbie Chung",100),
+  //     new Employee(12, "Cally Wooten",100),
+  //     new Employee(13, "Trent Blanchard",100),
+  //   ];
 
+  /**
+* Handle Http operation that failed.
+* Let the app continue.
+* @param operation - name of the operation that failed
+* @param result - optional value to return as the observable result
+*/
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
-
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
+  }
 
 }

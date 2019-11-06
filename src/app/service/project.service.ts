@@ -5,14 +5,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 
 import { Project } from '../classes/project';
-import { Employee } from '../classes/employee';
-import { PhaseItem } from '../classes/phaseItem';
-import { WorkloadItem } from '../classes/workloadItem';
-import { PhaseDetail } from '../classes/phaseDetail';
-import { MaterialItem } from '../classes/materialItem';
-import { InvoiceItem } from '../classes/invoiceItem';
-import { EmployeeSalary } from '../classes/employeeSalary';
-
 
 @Injectable({
     providedIn: 'root'
@@ -20,8 +12,9 @@ import { EmployeeSalary } from '../classes/employeeSalary';
 export class ProjectService {
 
     private projectUrl = 'api/project';  // URL to web api
-
-    url = 'http://localhost:3000/singleProject';
+    
+    /** Test api call by using local sampleJson.json */
+    private url = 'http://localhost:3000/singleProject';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -23,7 +23,7 @@ export class WorkloadTableComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private workloadPageService: WorkloadPageService,
-    private allEmployees: EmployeeListService
+    private employeeListService: EmployeeListService
   ) { }
 
   ngOnInit() {
@@ -57,7 +57,7 @@ export class WorkloadTableComponent implements OnInit {
   }
 
   getEmployees(): void {
-    this.allEmployees.getAllEmployees()
+    this.employeeListService.getAllEmployees()
       .subscribe(e => this.employees = e);
   }
 
