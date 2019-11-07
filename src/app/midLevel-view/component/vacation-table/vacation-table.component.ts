@@ -6,28 +6,28 @@ import { EmployeeListService } from 'src/app/service/employee-list.service';
 import { EmployeeSalary } from 'src/app/classes/employeeSalary';
 import { Employee } from 'src/app/classes/employee';
 import { SelectItem } from 'primeng/components/common/selectitem';
+import { VacationService } from 'src/app/service/vacation.service';
+import { VacationPageItem } from 'src/app/classes/vacationPageItem';
+
 
 @Component({
-  selector: 'app-workload-table',
-  templateUrl: './workload-table.component.html',
-  styleUrls: ['./workload-table.component.css']
+  selector: 'app-vacation-table',
+  templateUrl: './vacation-table.component.html',
+  styleUrls: ['./vacation-table.component.css']
 })
-export class WorkloadTableComponent implements OnInit {
+export class VacationTableComponent implements OnInit {
 
-  workloadPageItems: WorkloadPageItem[];
   cols: any[];
-  @Input() employeesSelectItems:SelectItem[];
-  @Input() months:Date[];
+  vacationArr:VacationPageItem[];
+  @Input()  employeesSelectItems:SelectItem[];
+  @Input()  months:Date[];
 
   constructor(
-    private route: ActivatedRoute,
-    private workloadPageService: WorkloadPageService,
+    private vacationService: VacationService,
   ) { }
 
   ngOnInit() {
-    this.workloadPageItems=[];
-    this.employeesSelectItems=[];
-    this.months=[];
+    this.vacationArr=[];
     this.cols = [
       { field: 'projectName', header: 'Project Name' },
       { field: 'empName', header: 'Research Member' },
@@ -37,21 +37,16 @@ export class WorkloadTableComponent implements OnInit {
       { field: 'month4', header: 'month4' },
       { field: 'month5', header: 'month5' },
       { field: 'month6', header: 'month6' },
-      { field: 'projectCompletion', header: 'Project Completion' },
-      { field: 'projectEndDate', header: 'Projected End Date' }
     ];
-    this.getWorkload();
+    this.getVacationArr();
   }
-
-  getWorkload(): void {
-    this.workloadPageService.getAllWorkloadItems()
-      .subscribe(w => {
-        this.workloadPageItems = w;
-        console.log("all workload for all employees api get result:");
-        console.log(JSON.stringify(this.workloadPageItems));
+  getVacationArr(): void {
+    this.vacationService.getVacationArr()
+      .subscribe(v => {
+        this.vacationArr = v;
+        console.log("all vacation api get response");
+        console.log(JSON.stringify(this.vacationArr));
       });
   }
-
-  
 
 }

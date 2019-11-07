@@ -72,3 +72,8 @@ p-table td input {
     background-color: #232f34 !important;
     color: #ffffff;
 }
+
+.text-align-center {
+    text-align: center !important;
+    padding-right: 2px !important;
+}
