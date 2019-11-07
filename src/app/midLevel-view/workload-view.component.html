@@ -1,1 +1,4 @@
-<app-workload-table></app-workload-table>
+<div *ngIf="isDataReady">
+    <app-workload-table [months]="months" [employeesSelectItems]="employeesSelectItems"></app-workload-table>
+    <app-vacation-table [months]="months" [employeesSelectItems]="employeesSelectItems"></app-vacation-table>
+</div>

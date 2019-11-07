@@ -3,7 +3,7 @@
         <mat-card-title>Projects</mat-card-title>
     </mat-card-header>
     <div>
-        <p-table #dt [columns]="cols" [value]="allProjects" [paginator]="true" [rows]="20" [ngStyle]="{'min-width':'1200px'}">
+        <p-table #dt [columns]="cols" [value]="allProjects" [paginator]="true" [rows]="20" (onFilter)="printFilteredItems($event)">
             <ng-template pTemplate="caption">
                 <!-- <div style="text-align: right">
                     <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -78,6 +78,24 @@
                         <mat-checkbox [checked]="rowData['followupSurveyResult']" [disabled]="true"></mat-checkbox>
                     </td>
                 </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <tr>
+                    <td colspan="1" [ngClass]="['text-align-left']">Totals</td>
+                    <td colspan="4"></td>
+                    <td [ngClass]="['text-align-right']">{{totalSalaryBuget | currency}}</td>
+                    <td [ngClass]="['text-align-right']">{{totalInvoiced | currency}}</td>
+                    <td colspan="3"></td>
+                    <td colspan="2" [ngClass]="['text-align-left']">Balance</td>
+                    <td colspan="2" [ngClass]="['text-align-left']">{{balance | currency}}</td>
+                    <!-- <td colspan="0"></td> -->
+                </tr>
+                <!-- <tr>
+                    <td colspan="5"></td>
+                    <td colspan="1">Balance</td>
+                    <td [ngClass]="['text-align-right']">{{balance | currency}}</td>
+                    <td colspan="7"></td>
+                </tr> -->
             </ng-template>
         </p-table>
     </div>

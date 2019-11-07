@@ -78,8 +78,3 @@ p-table td input {
 .text-align-left {
     text-align: left !important;
 }
-
-.text-align-right {
-    text-align: right !important;
-    padding-right: 2px !important;
-}

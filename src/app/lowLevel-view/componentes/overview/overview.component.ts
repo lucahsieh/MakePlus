@@ -6,7 +6,8 @@ import { Employee } from 'src/app/classes/employee';
 import { WorkloadItem } from 'src/app/classes/workloadItem';
 import { EmployeeSalary } from 'src/app/classes/employeeSalary';
 import { PhaseDetail } from 'src/app/classes/phaseDetail';
-import { BusinessCodeService } from 'src/app/service/business-Code.service';
+import { BusinessCodeService } from 'src/app/service/business-code.service';
+// import { BusinessCodeService } from 'src/app/service/business-Code.service';
 
 @Component({
   selector: 'app-overview',
@@ -119,13 +120,23 @@ export class OverviewComponent implements OnInit {
       });
   }
   getBusinessCodes(): void {
-    this.businessCodeService.getBusinessCodes()
-      .subscribe(res => {
-        this.businessCodeOptions = res;
-        console.log("business codes api get response");
-        console.log(JSON.stringify(this.businessCodeOptions));
-        this.initTeamMembersOptions();
-      });
+  //   this.businessCodeService.getBusinessCodes()
+  //     .subscribe(res => {
+  //       this.businessCodeOptions = res;
+  //       console.log("business codes api get response");
+  //       console.log(JSON.stringify(this.businessCodeOptions));
+  //       this.initTeamMembersOptions();
+  //     });
+
+  this.businessCodeOptions = [
+    'NA',
+    'K73.1/8731',
+    'K74.14/8742',
+    'DL33.10/3841',
+    'DL33.10/3842',
+    'DL33.10/3843',
+    'DL3310/3845'
+  ];
   }
 }
 

@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import {SliderModule} from 'primeng/slider';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,14 +24,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
 import { PickListModule } from 'primeng/picklist';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
-
-
-
-
 import { FormsModule } from '@angular/forms';
 
 import { CalendarModule } from 'primeng/calendar';
@@ -38,8 +36,10 @@ import { CheckboxModule } from 'primeng/checkbox';
 
 import { ProjectViewComponent } from './lowLevel-view/project-view.component';
 
-import { HttpClientModule } from '@angular/common/http';
 import { HighlevelViewComponent } from './highlevel-view/highlevel-view.component';
+
+
+
 import { CalendarComponent } from './lowLevel-view/componentes/calendar/calendar.component';
 import { InvoiceComponent } from './lowLevel-view/componentes/invoice/invoice.component';
 import { ProjectEditComponent } from './lowLevel-view/project-edit/project-edit.component';
@@ -53,7 +53,12 @@ import { SalaryIndividualComponent } from './lowLevel-view/componentes/salary-in
 import { SalaryComponent } from './lowLevel-view/componentes/salary/salary.component';
 import { WorkloadTableComponent } from './midLevel-view/component/workload-table/workload-table.component';
 import { WorkloadViewComponent } from './midLevel-view/workload-view.component';
-import { ProjectComponent } from './highlevel-view/component/project/project.component';
+import { AllProjectsTableComponent } from './highlevel-view/all-projects-table/all-projects-table.component';
+import { AllProposalTableComponent } from './highlevel-view/all-proposal-table/all-proposal-table.component';
+import { CommonModule } from '@angular/common';
+import { VacationEntryComponent } from './VacationEntry/vacation-entry/vacation-entry.component';
+import { SystemAdminComponent } from './SystemAdmin/system-admin/system-admin.component';
+import { VacationTableComponent } from './midLevel-view/component/vacation-table/vacation-table.component';
 
 
 @NgModule({
@@ -74,8 +79,12 @@ import { ProjectComponent } from './highlevel-view/component/project/project.com
     SalaryIndividualComponent,
     SalaryComponent,
     WorkloadTableComponent,
-    ProjectComponent,
-    
+    AllProjectsTableComponent,
+    AllProposalTableComponent,
+    VacationEntryComponent,
+    SystemAdminComponent,
+    VacationTableComponent,
+
   ],
   imports: [
     MatCheckboxModule,
@@ -96,13 +105,14 @@ import { ProjectComponent } from './highlevel-view/component/project/project.com
     MatFormFieldModule,
     HttpClientModule,
     MatCardModule,
+    CommonModule,
     MatGridListModule,
     CalendarModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
     CheckboxModule,
-    PickListModule, MultiSelectModule, DialogModule
+    PickListModule, MultiSelectModule, DialogModule,SliderModule
 
   ],
   providers: [],

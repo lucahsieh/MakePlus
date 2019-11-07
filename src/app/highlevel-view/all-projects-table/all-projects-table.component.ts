@@ -21,6 +21,10 @@ export class AllProjectsTableComponent implements OnInit {
   frozenCols: any[];
   yearFilter: number;
   yearTimeout: any;
+  totalSalaryBuget:number;
+  totalInvoiced:number;
+  balance:number;
+
 
 
 
@@ -56,7 +60,9 @@ export class AllProjectsTableComponent implements OnInit {
       { field: 'followupSurveySent', header: 'Follow up survey sent' },
       { field: 'followupSurveyResult', header: 'Follow up survey result' },
     ];
-
+    this.totalSalaryBuget = 0;
+    this.totalInvoiced=0;
+    this.balance=0;
     this.getAllProjects();
 
   }
@@ -75,6 +81,7 @@ export class AllProjectsTableComponent implements OnInit {
       .subscribe(w => {
         this.allProjects = w;
         this.paraProjectNameToSelectItem();
+        this.calculateTotal();
       });
   }
 
@@ -93,6 +100,29 @@ export class AllProjectsTableComponent implements OnInit {
     this.yearTimeout = setTimeout(() => {
       dt.filter(event.value, 'completion', 'gt');
     }, 250);
+  }
+
+  calculateTotal(){
+    this.totalSalaryBuget = 0;
+    this.totalInvoiced=0;
+    for(var i = 0; i < this.allProjects.length; i++){
+      this.totalSalaryBuget += this.allProjects[i].salaryBudget;
+      this.totalInvoiced += this.allProjects[i].salaryInvoiced;
+    }
+    this.balance=this.totalSalaryBuget - this.totalInvoiced;
+
+  }
+
+  printFilteredItems(event: any) {
+    this.totalSalaryBuget = 0;
+    this.totalInvoiced=0;
+    for(var i = 0; i < event.filteredValue.length; i++){
+      this.totalSalaryBuget += event.filteredValue[i].salaryBudget;
+      this.totalInvoiced += event.filteredValue[i].salaryInvoiced;
+    }
+    this.balance=this.totalSalaryBuget - this.totalInvoiced;
+    console.log(event.filteredValue); // filtered users
+    console.log(event.filters); // applied filters
   }
 
 
