@@ -50,11 +50,28 @@ export class MaterialComponent implements OnInit {
   updateOverviewTotal(){
     console.log(this.project.materialBudget);
     this.project.materialBudget = this.totalMaterialPredicted;
+
+    let projectTotalSalaryActual = 0;
+    for(var i = 0; i < this.project.employeeSalaryList.length; i++){
+      var currentEmploy = this.project.employeeSalaryList[i];
+      for(var j = 0; j < currentEmploy.phaseDetailsList.length; j++){
+        projectTotalSalaryActual += parseFloat(currentEmploy.phaseDetailsList[j].actualHr.toString()) * parseFloat(currentEmploy.wage.toString());
+      }
+    }
+    this.project.spendToDate = parseFloat(this.getTotalActualMaterial().toString()) + projectTotalSalaryActual;
   }
 
   onEditComplete(event: {column: Column, data: any}): void {
     this.calcuateTotal();
   }
+
+  getTotalActualMaterial(){
+    let totalMaterialActual = 0;
+    for(var i = 0; i < this.project.material.length; i++){
+      totalMaterialActual += parseFloat(this.project.material[i].actualBudget.toString());
+    }
+    return totalMaterialActual;
+}
 
 
   onTextEnterdInField(event: {originalEvent: any, column: Column, data: any}): void {

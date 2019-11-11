@@ -57,22 +57,51 @@ export class OverviewComponent implements OnInit {
   teamMemberSelectionChanged(e) {
     var id = this.findEmployeeByName(e).empID;
     let wage = this.findEmployeeByName(e).wage;
-    var selected = this.isSelected(e);
-    if (selected) {
+    var selectedLead = this.isSelectedLead(e);
+    var selectedMember = this.isSelectedMember(e);
+    if (selectedMember && !selectedLead) {
       this.addToWorkloadTable(id, e);
       this.addToSalaryTable(id, e, wage);
-    } else {
+    } 
+    if(!selectedMember && !selectedLead) {
       this.removeFromWorkloadTable(e);
       this.removeFromSalaryTable(id);
     }
+    console.log(this.project);
   }
-  private isSelected(name: string) {
+
+  teamLeadSelectionChanged(e) {
+    var id = this.findEmployeeByName(e).empID;
+    let wage = this.findEmployeeByName(e).wage;
+    var selectedLead = this.isSelectedLead(e);
+    var selectedMember = this.isSelectedMember(e);
+    if (selectedLead && !selectedMember) {
+      this.addToWorkloadTable(id, e);
+      this.addToSalaryTable(id, e, wage);
+    }
+    if (!selectedLead && !selectedMember){
+      this.removeFromWorkloadTable(e);
+      this.removeFromSalaryTable(id);
+    }
+    console.log(this.project);
+  }
+
+  private isSelectedMember(name: string) {
     for (var i = 0; i < this.teamMemberSelected.length; i++) {
       if (name == this.teamMemberSelected[i])
         return true;
     }
     return false;
   }
+
+  private isSelectedLead(name: string) {
+    for (var i = 0; i < this.teamLeadSelected.length; i++) {
+      if (name == this.teamLeadSelected[i])
+        return true;
+    }
+    return false;
+  }
+
   private addToSalaryTable(id: number, name: string, wage: number) {
     let temp = new EmployeeSalary();
     temp.empID = id;

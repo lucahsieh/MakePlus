@@ -167,7 +167,7 @@
                     <table class="full-width">
                         <tr>
                             <td *ngIf="!readMode" style="width:160px;">
-                                <p-multiSelect [options]="allEmployeeItems" [(ngModel)]="teamLeadSelected" [panelStyle]="{minWidth:'12em'}" [filter]="true"></p-multiSelect>
+                                <p-multiSelect [options]="allEmployeeItems" [(ngModel)]="teamLeadSelected" [panelStyle]="{minWidth:'12em'}" [filter]="true" (onChange)="teamLeadSelectionChanged($event.itemValue)" [showToggleAll]="false"></p-multiSelect>
                             </td>
                             <td>
                                 <input matInput placeholder="Select Team Lead" value="{{teamLeadSelected}}" [disabled]="true" class=" readOnly-Text">
@@ -181,7 +181,7 @@
                     <table class="full-width">
                         <tr>
                             <td *ngIf="!readMode" style="width:160px;">
-                                <p-multiSelect [options]="allEmployeeItems" [(ngModel)]="teamMemberSelected" [panelStyle]="{minWidth:'12em'}" [filter]="true" (onChange)="teamMemberSelectionChanged($event.itemValue)"></p-multiSelect>
+                                <p-multiSelect [options]="allEmployeeItems" [(ngModel)]="teamMemberSelected" [panelStyle]="{minWidth:'12em'}" [filter]="true" (onChange)="teamMemberSelectionChanged($event.itemValue)" [showToggleAll]="false"></p-multiSelect>
                             </td>
                             <td>
 
