@@ -15,6 +15,10 @@ export class ProjectEditComponent implements OnInit {
   options: FormGroup;
   isDataLoaded:boolean;
 
+  totalPhasePredicted = 0;
+  totalActualPredicted = 0;
+  spendtToDate = 0;
+
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
@@ -22,6 +26,7 @@ export class ProjectEditComponent implements OnInit {
 
   ngOnInit() {
     this.getProject();
+    this.spendtToDate = this.totalActualPredicted + this.totalPhasePredicted;
     this.isDataLoaded = false;
   }
 

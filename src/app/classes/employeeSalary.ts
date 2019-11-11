@@ -6,6 +6,8 @@ export class EmployeeSalary {
     empName: string;
     wage:number;
     phaseDetailsList:PhaseDetail[];
+    totalBudget:number;     // for front-end only
+    totalActual:number;     // for front-end only
 
     constructor(
         

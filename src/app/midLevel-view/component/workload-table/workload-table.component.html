@@ -33,7 +33,11 @@
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr [pSelectableRow]="rowData">
-                    <td>{{rowData['projectName']}}</td>
+                    <td>
+                        <a [routerLink]="['/project', rowData['projectID']]">
+                            {{rowData['projectName']}}
+                        </a>
+                    </td>
                     <td>{{rowData['empName']}}</td>
                     <td>{{rowData['month1'] == 0? '':rowData['month1']}}</td>
                     <td>{{rowData['month2'] == 0? '':rowData['month2']}}</td>

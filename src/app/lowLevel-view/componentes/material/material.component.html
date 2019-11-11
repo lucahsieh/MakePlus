@@ -35,7 +35,7 @@
                 <td pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.projectedBudget" required [disabled]="readMode">
+                            <input pInputText type="text" [(ngModel)]="rowData.projectedBudget" required [disabled]="readMode" (input)="onTextEnterdInField($event)">
                         </ng-template>
                         <ng-template pTemplate="output">
                             ${{rowData.projectedBudget}}
@@ -47,7 +47,7 @@
                 <td pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.actualBudget" required [disabled]="readMode">
+                            <input pInputText type="text" [(ngModel)]="rowData.actualBudget" required [disabled]="readMode" (input)="onTextEnterdInField($event)">
                         </ng-template>
                         <ng-template pTemplate="output">
                             ${{rowData.actualBudget}}
@@ -66,6 +66,14 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <tr>
+                <td colspan="2" [ngClass]="['text-align-left']">Totals</td>
+                <td [ngClass]="['text-align-right']">{{totalMaterialPredicted | currency}}</td>
+                <td [ngClass]="['text-align-right']">{{totalMaterialActual | currency}}</td>
+                <td [ngClass]="['text-align-right']">{{totalMaterialPredicted - totalMaterialActual | currency}}</td>
             </tr>
         </ng-template>
     </p-table>

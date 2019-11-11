@@ -20,7 +20,6 @@ export class ProjectViewComponent implements OnInit {
   project: Project;
   isDataLoaded: boolean;
   
-
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,

@@ -12,23 +12,30 @@ p-table {
     width: fit-content;
 }
 
-.tableRowStyle {
-    background-color: inherit !important;
+p-table tr {
+    /* height: 48px; */
 }
 
-.tableCellStyle {
+p-table th {
+    background-color: white !important;
+    text-align: left;
+    font-size: 12px;
     border-width: 0px !important;
-    text-align: center;
+    border-bottom-width: 1px !important;
 }
 
-.tableHeaderRowStyle {
-    background-color: inherit !important;
-}
-
-.tableHeaderCellStyle {
+p-table td {
+    font-size: 12px;
     border-width: 0px !important;
+    border-bottom-width: 1px !important;
 }
 
-.inputStyle {
-    text-align: center !important;
+p-table tr {}
+
+p-table td input {
+    font-size: 12px;
+}
+
+.ui-state-highlight {
+    /* background-color: #F9AA33 !important; */
 }

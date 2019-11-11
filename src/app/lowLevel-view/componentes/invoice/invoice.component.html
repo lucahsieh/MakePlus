@@ -1,9 +1,6 @@
 <mat-card>
     <mat-card-title>Invoice</mat-card-title>
     <p-table [style]="{'width':'280px'}" [columns]="cols" [value]="invoices" selectionMode="single" [(selection)]="selectedInvo" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
-        <ng-template pTemplate="caption">
-            Invoice
-        </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -15,14 +12,14 @@
             <tr [pSelectableRow]="rowData">
                 <td *ngFor="let col of columns" style="text-align: center;">
                     <span *ngIf="col.header=='date'">{{rowData[col.field] | date:"yyyy/MM/dd"}}</span>
-                    <span *ngIf="col.header!='date'">${{rowData[col.field] }}</span>
+                    <span *ngIf="col.header!='date'">{{rowData[col.field] | currency }}</span>
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="footer">
             <tr>
                 <td style="text-align: right;">Totals</td>
-                <td style="text-align: right;">${{calculateTotal()}}</td>
+                <td style="text-align: right;">{{calculateTotal() | currency }}</td>
             </tr>
         </ng-template>
         <!-- <ng-template pTemplate="summary" let-rowData *ngIf="readMode">

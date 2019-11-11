@@ -19,6 +19,7 @@ export class OverviewComponent implements OnInit {
 
   @Input() project: Project;
   @Input() readMode: boolean;
+  @Input() spendtToDate: number;
   employees: Employee[];
   allEmployeeItems: SelectItem[];
   teamMemberSelected: string[] = [];

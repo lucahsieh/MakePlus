@@ -1,6 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { MaterialItem } from 'src/app/classes/materialItem';
 import { PhaseColors } from 'src/app/classes/phaseColors';
+import { Project } from 'src/app/classes/project';
+import { Column } from 'primeng/components/common/shared';
 
 @Component({
   selector: 'app-material',
@@ -9,11 +11,18 @@ import { PhaseColors } from 'src/app/classes/phaseColors';
 })
 export class MaterialComponent implements OnInit {
 
+  @Input() project:Project;
+
   @Input() readMode: boolean;
   @Input() material: MaterialItem[];
+
+  totalMaterialPredicted:number;
+  totalMaterialActual:number;
+
   constructor() { }
 
   ngOnInit() {
+    this.calcuateTotal();
   }
 
   setPhaseBackgroundColor(i){
@@ -24,6 +33,32 @@ export class MaterialComponent implements OnInit {
 
     };
     return styles;
+  }
+
+
+  calcuateTotal(){
+    this.totalMaterialPredicted = 0;
+    this.totalMaterialActual = 0;
+    for(var i = 0; i < this.material.length; i++){
+      console.log(this.totalMaterialPredicted);
+      this.totalMaterialPredicted += parseFloat(this.material[i].projectedBudget.toString());
+      this.totalMaterialActual += parseFloat(this.material[i].actualBudget.toString());
+    }
+    this.updateOverviewTotal();
+  }
+
+  updateOverviewTotal(){
+    console.log(this.project.materialBudget);
+    this.project.materialBudget = this.totalMaterialPredicted;
+  }
+
+  onEditComplete(event: {column: Column, data: any}): void {
+    this.calcuateTotal();
+  }
+
+
+  onTextEnterdInField(event: {originalEvent: any, column: Column, data: any}): void {
+    this.calcuateTotal();
   }
 
 }
