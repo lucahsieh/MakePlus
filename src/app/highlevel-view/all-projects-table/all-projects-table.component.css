@@ -13,19 +13,19 @@ p-table {
 }
 
 p-table tr {
-    height: 38px;
+    height: 48px;
 }
 
 p-table th {
     background-color: white !important;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     border-width: 0px !important;
     border-bottom-width: 1px !important;
 }
 
 p-table td {
-    font-size: 12px;
+    font-size: 14px;
     border-width: 0px !important;
     border-bottom-width: 1px !important;
     text-align: center;
@@ -36,7 +36,7 @@ p-table tr {
 }
 
 p-table td input {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .ui-state-highlight {
@@ -44,7 +44,7 @@ p-table td input {
 }
 
 >>>body .ui-widget {
-    font-size: 12px !important;
+    font-size: 14px !important;
 }
 
 >>>* {
@@ -77,4 +77,18 @@ p-table td input {
 
 .text-align-left {
     text-align: left !important;
+}
+
+.toolBarButton {
+    color: #344955;
+    border-collapse: white;
+    background-color: #F9AA33;
+    margin: 5px;
+}
+
+.toolBarButtonSecondary {
+    color: white;
+    border-collapse: white;
+    background-color: #4a6572;
+    margin: 5px;
 }

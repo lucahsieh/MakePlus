@@ -6,6 +6,7 @@ import { WorkloadViewComponent } from './midLevel-view/workload-view.component';
 import { ProjectEditComponent } from './lowLevel-view/project-edit/project-edit.component';
 import { VacationEntryComponent } from './VacationEntry/vacation-entry/vacation-entry.component';
 import { SystemAdminComponent } from './SystemAdmin/system-admin/system-admin.component';
+import { NewProjectComponent } from './new-project/new-project.component';
 
 
 
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'project/:id',component: ProjectViewComponent},
   {path: 'project/edit/:id', component: ProjectEditComponent},
   {path: 'vacationEntry', component: VacationEntryComponent},
-  {path: 'systemAdmin', component: SystemAdminComponent}
+  {path: 'systemAdmin', component: SystemAdminComponent},
+  {path: 'newProject', component: NewProjectComponent},
 ];
 
 @NgModule({

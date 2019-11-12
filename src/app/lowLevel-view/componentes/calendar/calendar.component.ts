@@ -26,7 +26,6 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.phase1end = 21;
     this.phase1start = 5;
-    console.log(this.phases);
   }
 
   checkdateInPhase(date: number, month: number, year: number) {

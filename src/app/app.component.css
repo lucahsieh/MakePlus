@@ -37,3 +37,27 @@
 .allProjectTable {
     min-width: 950px;
 }
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: #4a6572;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
+    background-color: #f9aa33 !important;
+    /* Red background for example */
+}
+
+>>>.cardTitle {
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+>>>body .ui-table .ui-table-tbody>tr.ui-state-highlight,
+>>>body .ui-table .ui-table-tbody>tr:nth-child(even).ui-state-highlight {
+    color: #f9aa33;
+}

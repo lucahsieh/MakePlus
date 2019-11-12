@@ -3,6 +3,7 @@ import { PhaseItem } from 'src/app/classes/phaseItem';
 import { PhaseColors } from 'src/app/classes/phaseColors';
 import { Column } from 'primeng/components/common/shared';
 import { Project } from 'src/app/classes/project';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-phase-tracking',
@@ -10,10 +11,13 @@ import { Project } from 'src/app/classes/project';
   styleUrls: ['./phase-tracking.component.css']
 })
 export class PhaseTrackingComponent implements OnInit {
-  
+   eventsSubscription: any
+
   @Input() porject:Project;
   @Input() phases:PhaseItem[];
   @Input() readMode:boolean;
+  @Input() phaseChangedEventListener: Observable<void>;
+
   totalPhasePredicted:number;
   totalActualPredicted:number;
 
@@ -23,7 +27,8 @@ export class PhaseTrackingComponent implements OnInit {
     this.totalPhasePredicted = 0;
     this.totalActualPredicted = 0;
     this.calcuateTotal();
-    console.log(this.phases);
+    this.eventsSubscription = this.phaseChangedEventListener.subscribe(() => this.calcuateTotal())
+
   }
 
   setPhaseBackgroundColor(i){
@@ -38,7 +43,6 @@ export class PhaseTrackingComponent implements OnInit {
     this.totalPhasePredicted = 0;
     this.totalActualPredicted = 0;
     for(var i = 0; i < this.phases.length; i++){
-      console.log(this.totalPhasePredicted);
       this.totalPhasePredicted += parseFloat(this.phases[i].predictedDurationInWeeks.toString());
       this.totalActualPredicted += parseFloat(this.phases[i].actualDurationInWeeks.toString());
     }

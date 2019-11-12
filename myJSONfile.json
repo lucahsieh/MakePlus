@@ -243,7 +243,7 @@
         ],
         "workloadArr": [{
                 "empID": 1,
-                "empName": "Peter",
+                "empName": "Peter Ahn",
                 "month1": 0,
                 "month2": 0,
                 "month3": 23,
@@ -253,7 +253,7 @@
             },
             {
                 "empID": 2,
-                "empName": "Reneil",
+                "empName": "Reneil Pascua",
                 "month1": 12,
                 "month2": 3,
                 "month3": 0,
@@ -263,7 +263,7 @@
             },
             {
                 "empID": 3,
-                "empName": "Perry",
+                "empName": "Perry Li",
                 "month1": 10,
                 "month2": 9,
                 "month3": 8,

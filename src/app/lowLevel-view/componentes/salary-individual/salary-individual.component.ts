@@ -3,6 +3,7 @@ import { EmployeeSalary } from 'src/app/classes/employeeSalary';
 import { PhaseColors } from 'src/app/classes/phaseColors';
 import { Column } from 'primeng/components/common/shared';
 import { Project } from 'src/app/classes/project';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-salary-individual',
@@ -10,10 +11,12 @@ import { Project } from 'src/app/classes/project';
   styleUrls: ['./salary-individual.component.css']
 })
 export class SalaryIndividualComponent implements OnInit {
+  eventsSubscription: any
 
   @Input() employeeSalary:EmployeeSalary;
   @Input() readMode:boolean;
   @Input() project:Project;
+  @Input() phaseChangeListener: Observable<void>;
 
   projectTotalSalaryBugetHr:number;
   projectTotalSalaryActualHr:number;
@@ -22,6 +25,7 @@ export class SalaryIndividualComponent implements OnInit {
 
   ngOnInit() {
     this.calcuateTotal();
+    this.eventsSubscription = this.phaseChangeListener.subscribe(() => this.calcuateTotal());
   }
 
   setPhaseBackgroundColor(i){
@@ -64,7 +68,6 @@ export class SalaryIndividualComponent implements OnInit {
     }
     this.project.salaryBudget = projectTotalSalaryBuget;
     this.project.spendToDate = parseFloat(this.getTotalActualMaterial().toString()) + projectTotalSalaryActual;
-    console.log("project spendToDate=" + this.project.spendToDate);
   }
 
 

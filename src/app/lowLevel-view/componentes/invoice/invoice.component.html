@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title>Invoice</mat-card-title>
+    <mat-card-title class="cardTitle">Invoice</mat-card-title>
     <p-table [style]="{'width':'280px'}" [columns]="cols" [value]="invoices" selectionMode="single" [(selection)]="selectedInvo" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
         <ng-template pTemplate="header" let-columns>
             <tr>

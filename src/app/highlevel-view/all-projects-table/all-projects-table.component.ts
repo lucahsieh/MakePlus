@@ -24,7 +24,7 @@ export class AllProjectsTableComponent implements OnInit {
   totalSalaryBuget:number;
   totalInvoiced:number;
   balance:number;
-
+  hideQS:boolean;
 
 
 
@@ -41,7 +41,6 @@ export class AllProjectsTableComponent implements OnInit {
 
   ngOnInit() {
     var _self = this;
-    console.log("all projects");
     this.allProjects = [];
     this.projectNamesSelectItem = [];
     this.cols = [
@@ -60,6 +59,10 @@ export class AllProjectsTableComponent implements OnInit {
       { field: 'followupSurveySent', header: 'Follow up survey sent' },
       { field: 'followupSurveyResult', header: 'Follow up survey result' },
     ];
+    this.frozenCols = [
+      { field: 'projectName', header: 'Project Name' },
+      { field: 'leadName', header: 'Project Lead' }
+  ];
     this.totalSalaryBuget = 0;
     this.totalInvoiced=0;
     this.balance=0;

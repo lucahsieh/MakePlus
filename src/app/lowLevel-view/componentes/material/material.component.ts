@@ -3,6 +3,7 @@ import { MaterialItem } from 'src/app/classes/materialItem';
 import { PhaseColors } from 'src/app/classes/phaseColors';
 import { Project } from 'src/app/classes/project';
 import { Column } from 'primeng/components/common/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-material',
@@ -10,11 +11,13 @@ import { Column } from 'primeng/components/common/shared';
   styleUrls: ['./material.component.css']
 })
 export class MaterialComponent implements OnInit {
+  eventsSubscription: any
 
   @Input() project:Project;
-
   @Input() readMode: boolean;
   @Input() material: MaterialItem[];
+  @Input() phaseChangedEvent: Observable<void>;
+
 
   totalMaterialPredicted:number;
   totalMaterialActual:number;
@@ -23,6 +26,7 @@ export class MaterialComponent implements OnInit {
 
   ngOnInit() {
     this.calcuateTotal();
+    this.eventsSubscription = this.phaseChangedEvent.subscribe(() => this.calcuateTotal());
   }
 
   setPhaseBackgroundColor(i){
@@ -40,7 +44,6 @@ export class MaterialComponent implements OnInit {
     this.totalMaterialPredicted = 0;
     this.totalMaterialActual = 0;
     for(var i = 0; i < this.material.length; i++){
-      console.log(this.totalMaterialPredicted);
       this.totalMaterialPredicted += parseFloat(this.material[i].projectedBudget.toString());
       this.totalMaterialActual += parseFloat(this.material[i].actualBudget.toString());
     }
@@ -48,7 +51,6 @@ export class MaterialComponent implements OnInit {
   }
 
   updateOverviewTotal(){
-    console.log(this.project.materialBudget);
     this.project.materialBudget = this.totalMaterialPredicted;
 
     let projectTotalSalaryActual = 0;

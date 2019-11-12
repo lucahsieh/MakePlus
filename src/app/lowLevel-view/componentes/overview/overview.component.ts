@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from 'src/app/classes/project';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { EmployeeListService } from 'src/app/service/employee-list.service';
@@ -20,6 +20,8 @@ export class OverviewComponent implements OnInit {
   @Input() project: Project;
   @Input() readMode: boolean;
   @Input() spendtToDate: number;
+  @Output() teamChangedEvent= new EventEmitter<any>();
+
   employees: Employee[];
   allEmployeeItems: SelectItem[];
   teamMemberSelected: string[] = [];
@@ -59,13 +61,20 @@ export class OverviewComponent implements OnInit {
     let wage = this.findEmployeeByName(e).wage;
     var selectedLead = this.isSelectedLead(e);
     var selectedMember = this.isSelectedMember(e);
+    if(selectedMember){
+      this.addToMemberTable(id,e,wage);
+    }else{
+      this.removeFromMemberTable(id);
+    }
     if (selectedMember && !selectedLead) {
       this.addToWorkloadTable(id, e);
       this.addToSalaryTable(id, e, wage);
+      this.teamChangedEvent.emit();
     } 
     if(!selectedMember && !selectedLead) {
       this.removeFromWorkloadTable(e);
       this.removeFromSalaryTable(id);
+      this.teamChangedEvent.emit();
     }
     console.log(this.project);
   }
@@ -75,13 +84,22 @@ export class OverviewComponent implements OnInit {
     let wage = this.findEmployeeByName(e).wage;
     var selectedLead = this.isSelectedLead(e);
     var selectedMember = this.isSelectedMember(e);
+    if(selectedLead){
+      this.addToLeadTable(id,e,wage);
+    }else{
+      this.removeFromLeadTable(id);
+    }
     if (selectedLead && !selectedMember) {
       this.addToWorkloadTable(id, e);
       this.addToSalaryTable(id, e, wage);
+      this.teamChangedEvent.emit();
+
     }
     if (!selectedLead && !selectedMember){
       this.removeFromWorkloadTable(e);
       this.removeFromSalaryTable(id);
+
+      this.teamChangedEvent.emit();
     }
     console.log(this.project);
   }
@@ -100,6 +118,15 @@ export class OverviewComponent implements OnInit {
         return true;
     }
     return false;
+  }
+
+  private addToLeadTable(id: number, name: string, wage: number){
+    let temp = new Employee(id,name,wage);
+    this.project.lead.push(temp);
+  }
+  private addToMemberTable(id: number, name: string, wage: number){
+    let temp = new Employee(id,name,wage);
+    this.project.member.push(temp);
   }
 
   private addToSalaryTable(id: number, name: string, wage: number) {
@@ -129,6 +156,20 @@ export class OverviewComponent implements OnInit {
     for (var i = 0; i < this.project.employeeSalaryList.length; i++) {
       if (id == this.project.employeeSalaryList[i].empID) {
         this.project.employeeSalaryList.splice(i, 1);
+      }
+    }
+  }
+  private removeFromLeadTable(id: number) {
+    for (var i = 0; i < this.project.lead.length; i++) {
+      if (id == this.project.lead[i].empID) {
+        this.project.lead.splice(i, 1);
+      }
+    }
+  }
+  private removeFromMemberTable(id: number) {
+    for (var i = 0; i < this.project.member.length; i++) {
+      if (id == this.project.member[i].empID) {
+        this.project.member.splice(i, 1);
       }
     }
   }

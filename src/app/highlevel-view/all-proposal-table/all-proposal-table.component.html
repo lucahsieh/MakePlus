@@ -3,21 +3,14 @@
         <mat-card-title>Proposals</mat-card-title>
     </mat-card-header>
     <div>
-        <p-table #dt [columns]="cols" [value]="allProposals" [paginator]="true" [rows]="20" (onFilter)="printFilteredItems($event)">
-            <ng-template pTemplate="caption">
-                <!-- <div style="text-align: right">
-                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                    <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-                </div> -->
-            </ng-template>
-
+        <p-table #dt [columns]="cols" [value]="allProposals" [paginator]="true" [rows]="40" (onFilter)="printFilteredItems($event)">
             <ng-template pTemplate="header" let-columns>
 
                 <tr>
-                    <th [ngStyle]="{'max-width':'150px'}">Proposal Name</th>
-                    <th [ngStyle]="{'max-width':'150px'}">Project Lead</th>
+                    <th [ngStyle]="{'width':'200px'}">Proposal Name</th>
+                    <th [ngStyle]="{'width':'150px'}">Project Lead</th>
                     <th></th>
-                    <th [ngStyle]="{'max-width':'120px'}">Salary Budget</th>
+                    <th [ngStyle]="{'width':'120px'}">Salary Budget</th>
                 </tr>
 
                 <tr>
@@ -51,4 +44,7 @@
             </ng-template>
         </p-table>
     </div>
+    <a>
+        <button mat-flat-button color="primary">Add Proposal</button>
+    </a>
 </mat-card>

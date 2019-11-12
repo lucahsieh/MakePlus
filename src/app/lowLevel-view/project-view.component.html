@@ -1,17 +1,20 @@
 <div *ngIf="isDataLoaded">
-    <a routerLink="/project/edit/{{project.ID}}">
-        <button mat-stroked-button>Modify</button>
-    </a>
+    <mat-toolbar>
+        <mat-toolbar-row style="background-color: #344955; color: white; text-align: right;">
+            <a routerLink="/project/edit/{{project.ID}}">
+                <button mat-stroked-button class="toolBarButton">Modify</button>
+            </a>
+        </mat-toolbar-row>
+    </mat-toolbar>
 
-    <!-- <app-salary-individual [readMode]="true" [employeeSalary]="project.employeeSalary[0]"></app-salary-individual> -->
-    <app-overview [project]="project" [readMode]="true"></app-overview>
+    <app-overview [project]="project" [readMode]="true" (teamChangedEvent)="getPhaseChangedEvent()"></app-overview>
     <app-workload [workloadArr]="project.workloadArr" [readMode]="true"></app-workload>
     <mat-card>
-        <mat-card-title>Phase</mat-card-title>
+        <mat-card-title class="cardTitle">Phase</mat-card-title>
         <table>
             <tr>
                 <td>
-                    <app-phase [phases]="project.phaseArr" [readMode]="true" [project]="project"></app-phase>
+                    <app-phase [phases]="project.phaseArr" [readMode]="true" [project]="project" (phaseChangedEvent)="getPhaseChangedEvent()"></app-phase>
                 </td>
 
                 <td>
@@ -24,14 +27,14 @@
     <table>
         <tr>
             <td>
-                <app-phase-tracking [phases]="project.phaseArr" [readMode]="true"></app-phase-tracking>
+                <app-phase-tracking [phases]="project.phaseArr" [readMode]="true" [porject]="project" [phaseChangedEventListener]="eventsSubject.asObservable()"></app-phase-tracking>
             </td>
 
             <td>
-                <app-material [readMode]="true" [material]="project.material"></app-material>
+                <app-material [readMode]="true" [material]="project.material" [project]="project" [phaseChangedEvent]="eventsSubject.asObservable()"></app-material>
             </td>
             <td>
-                <app-invoice [invoices]="project.invoiceArr" [readMode]="true"></app-invoice>
+                <app-invoice [invoices]="project.invoiceArr" [readMode]="true" [project]="project"></app-invoice>
             </td>
         </tr>
     </table>
@@ -40,20 +43,9 @@
     <table>
         <tr>
             <td>
-                <app-salary [employeeSalaryArr]="project.employeeSalaryList" [readMode]="true"></app-salary>
+                <app-salary [employeeSalaryArr]="project.employeeSalaryList" [readMode]="true" [project]="project" [phaseChangedEvent]="eventsSubject.asObservable()"></app-salary>
 
             </td>
         </tr>
     </table>
 </div>
-
-<!-- <app-salary [employeeSalaryArr]="project.employeeSalary" [readMode]="true"></app-salary>
-
-<app-material [material]="project.material" [readMode]="true"></app-material>
-
-<app-phase [phases]="project.phaseArr" [readMode]="true" [project]="project"></app-phase>
-<app-phase-tracking [phases]="project.phaseArr" [readMode]="true"></app-phase-tracking>
-<app-calendar [phases]="project.phaseArr"></app-calendar>
-<app-overview [project]="project" [readMode]="true"></app-overview>
-<app-workload [workloadArr]="project.workloadArr" [readMode]="true"></app-workload>
-<app-invoice [invoices]="project.invoiceArr" [readMode]="true"></app-invoice> -->

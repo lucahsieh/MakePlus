@@ -68,6 +68,7 @@ export class InvoiceComponent implements OnInit {
     this.invoices = this.invoices.filter((val, i) => i != index);
     this.invo = null;
     this.displayDialog = false;
+    this.project.invoiceArr = this.invoices;
   }
   onRowSelect(event) {
     this.newInvo = false;
@@ -86,10 +87,6 @@ export class InvoiceComponent implements OnInit {
     this.invo = new InvoiceItem( 1, new Date());
     this.displayDialog = true;
   }
-
-
-
-
   calcuateTotal(){
     this.totalInvoiced = 0;
     for(var i = 0; i < this.invoices.length; i++){

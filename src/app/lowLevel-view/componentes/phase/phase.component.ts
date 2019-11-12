@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PhaseItem } from 'src/app/classes/phaseItem';
 import { PhaseColors } from 'src/app/classes/phaseColors';
 import { MaterialItem } from 'src/app/classes/materialItem';
 import { Project } from 'src/app/classes/project';
 import { PhaseDetail } from 'src/app/classes/phaseDetail';
+import { ProjectService } from 'src/app/service/project.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-phase',
@@ -15,6 +17,7 @@ export class PhaseComponent implements OnInit {
   @Input() phases: PhaseItem[];
   @Input() readMode: boolean;
   @Input() project: Project;
+  @Output() phaseChangedEvent= new EventEmitter<any>();
 
 
   displayedColumns: string[] = ['Name', 'Start Date', 'End Date', 'Records'];
@@ -25,7 +28,10 @@ export class PhaseComponent implements OnInit {
   displayDialog: boolean;
   today: Date;
 
-  constructor() { }
+  constructor(  
+    private route: ActivatedRoute,
+    private projectService: ProjectService,
+    ) { }
 
   ngOnInit() {
     this.cols = [
@@ -45,10 +51,15 @@ export class PhaseComponent implements OnInit {
     this.phase.startDate = this.parsDateFromStrToDate(this.phase.startDate.toString());
     this.phase.endDate = this.parsDateFromStrToDate(this.phase.endDate.toString());
     if (this.newPhase) {
-      var phaseID = Math.floor(Math.random() * 1000); //TODO: hardcoded now //TODO: get avaliable phaseID
+
+      this.projectService.getNextPhaseID()
+      .subscribe(p => {
+      var phaseID = p;
+      this.phase.phaseID = p;
       this.phases.push(this.phase);
       this.addToMaterialTable(phaseID);
       this.addToSalaryTable(phaseID);
+      });
     }
     else
       this.phases[this.phases.indexOf(this.selectedPhase)] = this.phase;
@@ -56,6 +67,7 @@ export class PhaseComponent implements OnInit {
     this.phase = null;
     this.displayDialog = false;
   }
+
   private addToSalaryTable(id:number) {
     var phaseName = this.phase.name;
     let temp = new PhaseDetail(id, phaseName, 0, 0, "");
@@ -88,6 +100,7 @@ export class PhaseComponent implements OnInit {
     this.removeMaterialTable(targetID);
     this.removePhasesTable(targetID);
     this.removeFromSalaryTable(targetID);
+    this.phaseChangedEvent.emit();
   }
   private removePhasesTable(id: number) {
     for (var i = 0; i < this.project.phaseArr.length; i++) {

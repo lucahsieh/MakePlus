@@ -22,7 +22,15 @@ export class ProjectService {
 
     constructor(
         private http: HttpClient,
-        private messageService: MessageService) { }
+        private messageService: MessageService) { };
+    
+    getNextProjectID(): Observable<number> {
+        return of(Math.floor(Math.random() * 10000) + 100);
+      };
+
+      getNextPhaseID(): Observable<number> {
+        return of(Math.floor(Math.random() * 10000) + 100);
+      };
 
     getProject(id: number): Observable<Project> {
         //   const url = `${this.projectUrl}/${id}`;
@@ -39,6 +47,16 @@ export class ProjectService {
         // return this.http.get<Project>(this.url)
         //   .pipe(map((response: any) => new Project(response.json())));
     };
+
+    /** POST: add a new hero to the database */
+    postProject (project: Project): Observable<Project> {
+        console.log("POST Sucessful");
+        console.log(JSON.stringify(project));
+        return this.http.post<Project>(this.url, project, this.httpOptions)
+      .pipe(
+        catchError(this.handleError('postProject', project))
+      );
+    }
 
 
     /** GET hero by id. Return `undefined` when id not found */

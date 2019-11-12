@@ -1,6 +1,7 @@
 <mat-card>
-    <mat-card-title>Phase Tracking</mat-card-title>
-    <p-table [value]="phases" [style]="{'width':'400px'}" (onEditComplete)="onEditComplete($event)">
+    <mat-card-title class="cardTitle">Phase Tracking
+    </mat-card-title>
+    <p-table [value]="porject.phaseArr" [style]="{'width':'400px'}" (onEditComplete)="onEditComplete($event)">
         <ng-template pTemplate="header">
             <tr>
                 <th [ngStyle]="{'width':'1px'}"></th>

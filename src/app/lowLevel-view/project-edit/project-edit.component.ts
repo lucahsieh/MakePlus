@@ -3,6 +3,7 @@ import { Project } from '../../classes/project';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../service/project.service';
 import { FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-project-edit',
@@ -11,13 +12,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class ProjectEditComponent implements OnInit {
 
+  eventsSubject: Subject<void> = new Subject<void>();
+
   project: Project;
   options: FormGroup;
   isDataLoaded:boolean;
 
   totalPhasePredicted = 0;
   totalActualPredicted = 0;
-  spendtToDate = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +28,6 @@ export class ProjectEditComponent implements OnInit {
 
   ngOnInit() {
     this.getProject();
-    this.spendtToDate = this.totalActualPredicted + this.totalPhasePredicted;
     this.isDataLoaded = false;
   }
 
@@ -40,5 +41,15 @@ export class ProjectEditComponent implements OnInit {
         console.log(this.project);
         this.isDataLoaded = true;
       });
+  }
+
+  submit(project:Project) {
+    console.log("look here!");
+    console.log(project);
+    this.projectService.postProject(project);
+  }
+
+  getPhaseChangedEvent(){
+    this.eventsSubject.next()
   }
 }
