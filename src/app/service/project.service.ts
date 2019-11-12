@@ -11,6 +11,8 @@ import { Project } from '../classes/project';
 })
 export class ProjectService {
 
+    emptyJSON = `{"employeeSalaryList":[],"ID":1,"Name":"","desc":"","salaryBudget":0,"totalInvoice":0,"materialBudget":0,"spendToDate":0,"startDate":null,"endDate":null,"completion":null,"businessCode":"NA","costMultiplier":null,"isProposal":false,"isUnderISO13485":false,"recoredStoredCompleted":null,"progressSurveyRsult":false,"progressSurveySent":false,"followupSurveySent":false,"followupSurveyResult":false,"lead":[],"member":[],"phaseArr":[],"workloadArr":[],"invoiceArr":[],"material":[]}`;
+
     private projectUrl = 'api/project';  // URL to web api
     
     /** Test api call by using local sampleJson.json */
@@ -28,9 +30,16 @@ export class ProjectService {
         return of(Math.floor(Math.random() * 10000) + 100);
       };
 
-      getNextPhaseID(): Observable<number> {
+    getNextPhaseID(): Observable<number> {
         return of(Math.floor(Math.random() * 10000) + 100);
       };
+
+    getEmptyProject(){
+        let project = JSON.parse(this.emptyJSON);
+        console.log("empty project");
+        console.log(project);
+        return of(project);
+    }
 
     getProject(id: number): Observable<Project> {
         //   const url = `${this.projectUrl}/${id}`;
@@ -281,4 +290,5 @@ export class ProjectService {
     //     console.log("getProject(id)\n"+JSON.stringify(p));
     //     return p;
     // };
+
 }

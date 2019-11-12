@@ -30,6 +30,16 @@ export class EmployeeListService {
     );
   };
 
+  /** POST: add a new hero to the database */
+  postEmployee (employee: Employee): Observable<Employee> {
+    console.log("POST Sucessful");
+    console.log(JSON.stringify(employee));
+    return this.http.post<Employee>(this.url, employee, this.httpOptions)
+  .pipe(
+    catchError(this.handleError('postProject', employee))
+  );
+}
+
   // private createDummyEmployees() {
   //   return [
   //     new Employee(1, "Peter Ahn",100),

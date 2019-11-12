@@ -40,7 +40,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ProjectViewComponent } from './lowLevel-view/project-view.component';
 
 import { HighlevelViewComponent } from './highlevel-view/highlevel-view.component';
+import {MatRadioModule} from '@angular/material/radio';
 
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 import { CalendarComponent } from './lowLevel-view/componentes/calendar/calendar.component';
@@ -116,7 +118,7 @@ import { NewProjectComponent } from './new-project/new-project.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CheckboxModule,MatTabsModule,MatButtonToggleModule,
+    CheckboxModule,MatTabsModule,MatButtonToggleModule,MatStepperModule,MatRadioModule,
     PickListModule, MultiSelectModule, DialogModule,SliderModule
 
   ],
